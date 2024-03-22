@@ -43,19 +43,19 @@ jobs:
         cd backend
         zip -r deploy.zip *
         cp deploy.zip ../
-# Getting the current timestamp to use to name the deployment version
-    - name: Get timestamp
-      uses: gerred/actions/current-time@master
-      id: current-time
-# replace any ':' and '.' characters with a '-' so the deployment will have a valid name
-    - name: Run string replace
-      uses: frabert/replace-string-action@master
-      id: format-time
-      with:
-        pattern: '[:\\.]+'
-        string: "${{ steps.current-time.outputs.time }}"
-        replace-with: '-'
-        flags: 'g'
+# # Getting the current timestamp to use to name the deployment version
+#     - name: Get timestamp
+#       uses: gerred/actions/current-time@master
+#       id: current-time
+# # replace any ':' and '.' characters with a '-' so the deployment will have a valid name
+#     - name: Run string replace
+#       uses: frabert/replace-string-action@master
+#       id: format-time
+#       with:
+#         pattern: '[:\\.]+'
+#         string: "${{ steps.current-time.outputs.time }}"
+#         replace-with: '-'
+#         flags: 'g'
 
 # Deploy the deployment package to AWS Serverless
 
