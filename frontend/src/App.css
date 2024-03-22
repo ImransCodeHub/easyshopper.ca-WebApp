@@ -1,6 +1,10 @@
 .App {
-  text-align: center;
+  /* background-color: #dddddd;   */
+  /* background-image: url("Components/Assets/Home-Background.jpeg"); */
+  background-size: cover; /* Cover the entire container */
+  background-repeat: no-repeat; /* Prevent repeating */
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -18,12 +22,6 @@
   background-image: url("Components/Assets/Home-Background.jpeg");
   background-size: cover;
   background-position: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 

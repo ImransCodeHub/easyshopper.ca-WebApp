@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import {client, ObjectId} from './mongo.js';
+import client from './mongo.js';
 
 
 const app = express();

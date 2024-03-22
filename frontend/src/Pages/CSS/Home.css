@@ -1,0 +1,15 @@
+.text-home {
+    text-align: center;
+    margin-top: 0px; /* Adjust the top margin to move the text down */
+    margin-bottom: 0px; /* Adjust the bottom margin to move the text up */
+}
+
+.wel-home{
+    font-family: 'Tourney', sans-serif;
+    font-weight: 300; /* Adjust the font weight as needed */
+    font-style: normal;
+    font-size: 3rem; /* Adjust the font size as needed */
+    color: #ffffff; /* Set the text color */
+}
+
+
