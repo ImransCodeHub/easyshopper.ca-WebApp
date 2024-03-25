@@ -47,14 +47,24 @@ jobs:
 
 # Deploy the deployment package to AWS Serverless
 
-    - name: Set up AWS CLI
-      uses: aws-actions/configure-aws-credentials@v2
+    # - name: Set up AWS CLI
+    #   uses: aws-actions/configure-aws-credentials@v2
+    #   with:
+    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
+    # - name: Deploy to S3
+    #   run: aws s3 sync . s3://easyshopper.ca --delete
+
+    - name: Deploy to S3
+      uses: jakejarvis/s3-sync-action@master
       with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: easyshopper.ca
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          
-    - name: Deploy to S3
-      run: aws s3 sync . s3://easyshopper.ca --delete
+        SOURCE_DIR: "./frontend/build"
         
     # - name: Deploy Lambda function
     #   run: aws lambda update-function-code --function-name GetProductsInfo --zip-file fileb://lambda.zip
