@@ -1,46 +1,39 @@
-
-# Configure what events and branches you want to trigger your pipeline on, in this case, I want it to be triggered when I push the code in the master branch
 on:
   push:
     branches:
       - master
     
-# Create jobs to create your image which you can deploy on AWS, I am running my Node20 application on ubuntu OS. 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 20.x
 
-# use npm to install the front end, the build the compiled react front end and copy to the backend
-
-    - name: install and build frontend
-      env:
-        CI: ""
+    - name: Install frontend dependencies
       run: |
         cd frontend
-        npm install --force
-        npm run build
+        npm install
 
-        
-# Delete previous files from s3 bucket before pushing their updated versions
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
 
     - name: Delete all objects in S3 bucket
       run: |
-        aws s3 rm --recursive s3://easyshopper.ca
-        
-# Deploy the production build to AWS S3 Bucket
+        aws s3 rm s3://easyshopper.ca --recursive
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    - name: Deploy new objects to S3
+    - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -49,5 +42,3 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SOURCE_DIR: "./frontend/build"
-
-
