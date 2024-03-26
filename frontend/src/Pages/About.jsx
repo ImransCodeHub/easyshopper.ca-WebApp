@@ -20,6 +20,12 @@ const About = () => {
                     <p className="mt-0.5 text-gray-700 text-center">
                         Capstone project for CNA Software Development course.
                     </p>
+
+
+                    <p className="mt-0.5 text-gray-700 text-center">
+                        Developed by: <span className="text-blue-500">David</span>
+                    </p>
+
                 </div>
             </div>
         </Layout>
