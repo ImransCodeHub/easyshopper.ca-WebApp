@@ -34,9 +34,9 @@ jobs:
         
 # Delete previous files from s3 bucket before pushing their updated versions
 
-    # - name: Delete all objects in S3 bucket
-    #   run: |
-    #     aws s3 rm s3://easyshopper.ca --recursive
+    - name: Delete all objects in S3 bucket
+      run: |
+        aws s3 rm s3://easyshopper.ca --recursive
         
 # Deploy the production build to AWS S3 Bucket
 
