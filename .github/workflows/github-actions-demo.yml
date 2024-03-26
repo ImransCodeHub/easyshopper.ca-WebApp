@@ -36,7 +36,7 @@ jobs:
 
     - name: Delete all objects in S3 bucket
       run: |
-        aws s3 rm s3://easyshopper.ca --recursive
+        aws s3 rm --recursive s3://easyshopper.ca
         
 # Deploy the production build to AWS S3 Bucket
 
