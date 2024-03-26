@@ -30,16 +30,11 @@ jobs:
         cd frontend
         npm install --force
         npm run build
-
-# Delete previous files from s3 bucket before pushing their updated versions
-
-    # - name: Delete all objects in S3 bucket
-    #   run: |
-    #     aws s3 rm --recursive s3://easyshopper.ca
         
 # Deploy the production build to AWS S3 Bucket
 
     - name: Deploy new objects to S3
+    - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
