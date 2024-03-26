@@ -3,9 +3,9 @@ import './CSS/Shop.css';
 import { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar/Navbar';
 import Layout from '../Components/Layout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
-import { Plus } from 'bootstrap-icons-react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
+import { Plus } from 'react-bootstrap-icons';
 
 
 
