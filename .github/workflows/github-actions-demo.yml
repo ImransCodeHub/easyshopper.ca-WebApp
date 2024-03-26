@@ -56,6 +56,8 @@ jobs:
     # - name: Deploy to S3
     #   run: aws s3 sync . s3://easyshopper.ca --delete
 
+# Deploy the production build to AWS S3 Bucket
+
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
