@@ -1,6 +1,5 @@
 ## Frontend Requirements
-`npm install`  
-`npm install create-react-app`
+`npm install` 
 
 ## Backend Requirements
 `npm install express`  
