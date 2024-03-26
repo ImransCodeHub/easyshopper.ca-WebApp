@@ -4,7 +4,7 @@ import './Navbar.css';
 import logo from '../Assets/web-logo-v0.3.png';
 import cartlogo from '../Assets/shopping-cart.png';
 import { Link } from 'react-router-dom';
-import { Cart2 } from 'bootstrap-icons-react';
+import { Cart2 } from 'react-bootstrap-icons';
 
 const Navbar = () => {
 
