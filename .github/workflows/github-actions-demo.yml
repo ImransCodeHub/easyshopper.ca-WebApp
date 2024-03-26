@@ -16,14 +16,12 @@ jobs:
       with:
         node-version: 20.x
 
-    - name: Install frontend dependencies
+    - name: install and build frontend
+      env:
+        CI: ""
       run: |
         cd frontend
-         npm install --force
-
-    - name: Build frontend
-      run: |
-        cd frontend
+        npm install --force
         npm run build
 
     - name: Delete all objects in S3 bucket
