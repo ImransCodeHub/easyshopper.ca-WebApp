@@ -21,45 +21,26 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-# use npm to install the front end, the build the compiled react front end and copy to the backend 
-    - name: install frontend
+# use npm to install the front end, the build the compiled react front end and copy to the backend
+
+    - name: install and build frontend
       env:
         CI: ""
       run: |
         cd frontend
         npm install --force
         npm run build
-      
+
+# Delete previous files from s3 bucket before pushing their updated versions
+    - name: Delete all objects in S3 bucket
+      run: |
+        aws s3 rm s3://easyshopper.ca --recursive
         
-# # Getting the current timestamp to use to name the deployment version
-#     - name: Get timestamp
-#       uses: gerred/actions/current-time@master
-#       id: current-time
-# # replace any ':' and '.' characters with a '-' so the deployment will have a valid name
-#     - name: Run string replace
-#       uses: frabert/replace-string-action@master
-#       id: format-time
-#       with:
-#         pattern: '[:\\.]+'
-#         string: "${{ steps.current-time.outputs.time }}"
-#         replace-with: '-'
-#         flags: 'g'
-
-# Deploy the deployment package to AWS Serverless
-
-    # - name: Set up AWS CLI
-    #   uses: aws-actions/configure-aws-credentials@v2
-    #   with:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          
-    # - name: Deploy to S3
-    #   run: aws s3 sync . s3://easyshopper.ca --delete
-
 # Deploy the production build to AWS S3 Bucket
 
-    - name: Deploy to S3
-      uses: jakejarvis/s3-sync-action@master
+    - name: Deploy new objects to S3
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
@@ -67,15 +48,5 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SOURCE_DIR: "./frontend/build"
-        
-    # - name: Deploy Lambda function
-    #   run: aws lambda update-function-code --function-name GetProductsInfo --zip-file fileb://lambda.zip
 
-  # - name: Deployed!
-  #   run: echo App deployed!
-  #     - name: Deploy Lambda functions
-  #       un: |
-  #       for function in lambda1 lambda2 lambda3; do
-  #         aws lambda update-function-code --function-name $function --zip-file fileb://lambda.zip
-      #   done
 
