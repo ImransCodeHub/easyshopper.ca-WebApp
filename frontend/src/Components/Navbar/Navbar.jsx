@@ -21,7 +21,6 @@ const Navbar = () => {
         }
         
     }, []);
-    
 
     // Navbar visibility on scroll
     const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
@@ -41,6 +40,29 @@ const Navbar = () => {
         setPrevScrollpos(currentScrollPos);
         setVisible(visible);
     };
+
+    const [cartCount, setCartCount] = useState();
+
+    useEffect(() => {
+
+        // Get the logged in user from local storage
+        // const loggedInUser = localStorage.getItem('email');
+
+        const fetchCartCount = async () => {
+            console.log('Fetching cart count' + cartCount);
+            try {
+                const response = await fetch('/api/cart');
+                const data = await response.json();
+                //if (data.userID === loggedInUser) { //TODO: Might not need this check because the addtocart already do this check...
+                    setCartCount(data.cart.length);
+                //}
+            }
+            catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+        fetchCartCount();
+    }, []); //Bug: The cart count is not updating when a product is added to the cart. Fix: Added a copy method to the shop and product page to update the cart count.
 
     return (
         <div className={`navbar ${visible ? 'navbar-visible' : 'navbar-hidden'}`}>
@@ -64,7 +86,7 @@ const Navbar = () => {
                     <Link to='/login'><button>Login</button></Link>
                     <Link to='/cart'><Cart2  style={{fontSize: '40px' }} /></Link>
                     {/* Cart count */}
-                    <div className="nav-cart-count">0</div>           
+                    <div className="nav-cart-count">{cartCount}</div>           
                 </div>
             </div>
         </div>
