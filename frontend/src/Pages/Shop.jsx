@@ -1,13 +1,11 @@
 import React from 'react';
 import './CSS/Shop.css';
 import { useState, useEffect } from 'react';
-import Navbar from '../Components/Navbar/Navbar';
+import Navbar, {setCartCount} from '../Components/Navbar/Navbar';
 import Layout from '../Components/Layout';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 import { Plus } from 'react-bootstrap-icons';
-
-
 
 const Shop = () => {
 
@@ -30,14 +28,50 @@ const Shop = () => {
         fetchProducts();
     }, []);
 
-    // Function to add a product to the cart
-    const addToCart = (product) => {
-        // Add the selected product to the cart
-        console.log(product + " added to cart");
-        // Call the cart context to add the product to the cart or Call cart function to add the product to the cart
-        
-        // Use state management system, React Context to manage the cart state and add the product to it?
-        // cartDispatch({ type: 'ADD_TO_CART', payload: product });
+//TODO: Check if the user is logged in before adding to cart and append the email to the cart data as user identifier
+    const addToCart = async (productId) => {
+        const loggedIn = true;
+        if (!loggedIn) { // Do the login part!
+            // Redirect to the login page if the user is not logged in
+            window.location.href = '/login';
+            return;
+        } else {
+            try {
+                console.log(productId + " added to cart testing");
+                // Send a POST request to the backend to add the product to the cart
+                const response = await fetch(`/api/cart/${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ quantity: 1 }),
+                });
+                
+                // Bug: The cart count is not updating when a product is added to the cart. Fix:
+                const fetchCartCount = async () => {
+                    
+                    try {
+                        const response = await fetch('/api/cart');
+                        const data = await response.json();
+                        //if (data.userID === loggedInUser) { //TODO: Might not need this check because the addtocart already do this check...
+                            // setCartCount(data.cart.length);
+                            setCartCount(data.cart.length); // does not work
+
+                        //}
+                    }
+                    catch (error) {
+                        console.error("Error fetching data:", error);
+                    }
+                }
+                fetchCartCount();
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+            }
+        }
     };
 
     return (
@@ -60,12 +94,15 @@ const Shop = () => {
 
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 pt-10">
                         {products.map((product) => (
-                        <a key={product.id} href={product.href} className="group">
+                        <a key={product.productId} href={product.href} className="group">
                             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                             <img
                                 src={product.images[0]}
                                 alt={product.imageAlt}
                                 className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-450px]"
+                                // add hover effect
+                                style={{ cursor: 'pointer' }}
+                                onClick = {() => {window.location.href = `/product/${product.productId}`}}
                             />
                             </div>
 
