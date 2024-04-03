@@ -1,7 +1,7 @@
 import React from 'react';
 import './CSS/Shop.css';
 import { useState, useEffect } from 'react';
-import Navbar, {setCartCount} from '../Components/Navbar/Navbar';
+//import Navbar, {setCartCount} from '../Components/Navbar/Navbar';
 import Layout from '../Components/Layout';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,7 @@ const Shop = () => {
             try {
                 const response = await fetch('/api/products');
                 const data = await response.json();
-                setProducts(data); // Set products state variable
+                //setProducts(data); // Set products state variable
                 console.log(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -55,7 +55,7 @@ const Shop = () => {
                         const data = await response.json();
                         //if (data.userID === loggedInUser) { //TODO: Might not need this check because the addtocart already do this check...
                             // setCartCount(data.cart.length);
-                            setCartCount(data.cart.length); // does not work
+                            //setCartCount(data.cart.length); // does not work
 
                         //}
                     }
