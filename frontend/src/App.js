@@ -8,11 +8,23 @@ import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import Login from './Pages/Login';
 import Layout from './Components/Layout';
+import { useEffect } from "react";
 
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
+
+  useEffect(() => {
+    if (document) {
+      const stylesheet = document.createElement("link");
+      stylesheet.rel = "stylesheet";
+      stylesheet.href = "https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css";
+
+      document.head.appendChild(stylesheet);
+    }
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
