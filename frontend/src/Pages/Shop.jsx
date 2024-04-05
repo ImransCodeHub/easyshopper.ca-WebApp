@@ -15,13 +15,15 @@ const Shop = () => {
     // Fetch products from the backend
     useEffect(() => {
         const fetchProducts = async () => {
+            let response;
             try {
-                const response = await fetch('/api/products');
+                response = await fetch('/api/products');
                 const data = await response.json();
-                //setProducts(data); // Set products state variable
+                setProducts(data); // Set products state variable
                 console.log(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
+                console.log("Response:", response);
             }
         };
         
