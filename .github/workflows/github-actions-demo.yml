@@ -44,19 +44,11 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SOURCE_DIR: "./frontend/build"
 
-    - name: Install backend
-      env:
-        CI: ""
-      run: |
-        cd ..\backend\
-        npm install express
-        npm install mongodb
-
     - name: Zip getProducts
       env:
         CI: ""
       run: |
-        cd ..\backend-lambda\ && zip -r -9 getProducts.zip *
+        cd backend-lambda && zip -r -9 getProducts.zip *
 
     - name: Update getProducts Lambda
       uses: kazimanzurrashid/aws-lambda-update-action@v2.0.3
