@@ -48,7 +48,12 @@ jobs:
       env:
         CI: ""
       run: |
-        cd backend-lambda && zip -9 GetProductsInfo.zip getProducts.js
+        cd backend-lambda
+        npm init
+        npm install --force
+        npm install express
+        npm install mongodb
+        zip -9 GetProductsInfo.zip node_modules/ getProducts.js package-lock.json package.json
 
     - name: Update getProducts Lambda
       uses: kazimanzurrashid/aws-lambda-update-action@v2.0.3
