@@ -24,19 +24,12 @@ jobs:
         npm install --force
         npm run build
 
-    # - name: Delete all objects in S3 bucket
-    #   run: |
-    #     aws s3 rm s3://easyshopper.ca --recursive
-    #   env:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
     - name: Invalidate CloudFront
       uses: chetan/invalidate-cloudfront-action@v2
       env:
         DISTRIBUTION: ${{ secrets.DISTRIBUTION_ID }}
         PATHS: '/*'
-        AWS_REGION: 'us-east-1'
+        AWS_REGION: ${{ secrets.AWS_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
@@ -50,3 +43,26 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SOURCE_DIR: "./frontend/build"
+
+    - name: Install backend
+      env:
+        CI: ""
+      run: |
+        cd ..\backend\
+        npm install express
+        npm install mongodb
+
+    - name: Zip getProducts
+      env:
+        CI: ""
+      run: |
+        cd ..\backend-lambda\ && zip -r -9 getProducts.zip *
+
+    - name: Update getProducts Lambda
+      uses: kazimanzurrashid/aws-lambda-update-action@v2.0.3
+      with:
+          zip-file: backend-lambda/getProducts.zip
+      env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
