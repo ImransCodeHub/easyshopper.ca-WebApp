@@ -49,6 +49,7 @@ jobs:
         CI: ""
       run: |
         cd backend-lambda
+        npm init -y
         npm install --force
         npm install express
         npm install mongodb
