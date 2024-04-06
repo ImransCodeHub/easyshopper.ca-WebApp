@@ -7,6 +7,7 @@ import Contact from './Pages/Contact';
 import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import Login from './Pages/Login';
+import ThankYou from './Pages/ThankYou';
 import Layout from './Components/Layout';
 
 import './App.css';
@@ -26,6 +27,7 @@ function App() {
             <Route path="/product/:productId" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/thankyou" element={<ThankYou />} />
         </Routes>
       </BrowserRouter>
     </div>
