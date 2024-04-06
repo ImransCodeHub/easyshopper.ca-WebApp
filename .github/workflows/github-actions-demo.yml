@@ -53,8 +53,8 @@ jobs:
         npm install --force
         npm install express
         npm install mongodb
-        zip -9 GetProductsInfo.zip node_modules/ index.mjs package-lock.json package.json
-
+        zip -9 GetProductsInfo.zip ./*
+# zip -9 GetProductsInfo.zip node_modules/ index.mjs package-lock.json package.json
     - name: Update getProducts Lambda
       uses: kazimanzurrashid/aws-lambda-update-action@v2.0.3
       with:
