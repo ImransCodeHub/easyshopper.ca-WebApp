@@ -60,3 +60,20 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Zip getProductID
+      env:
+        CI: ""
+      run: |
+        cd backend-lambda/getProductIdLambda
+        npm install 
+        zip -r GetProductID.zip ./*
+        
+    - name: Update getProductID Lambda
+      uses: kazimanzurrashid/aws-lambda-update-action@v2.0.3
+      with:
+          zip-file: backend-lambda/getProductIdLambda/GetProductID.zip
+      env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
