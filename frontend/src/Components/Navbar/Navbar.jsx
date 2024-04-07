@@ -5,6 +5,9 @@ import logo from '../Assets/web-logo-v0.3.png';
 import cartlogo from '../Assets/shopping-cart.png';
 import { Link } from 'react-router-dom';
 import { Cart2 } from 'react-bootstrap-icons';
+import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Login from '../../Pages/Login';
 
 const Navbar = () => {
 
@@ -51,6 +54,7 @@ const Navbar = () => {
         const fetchCartCount = async () => {
             console.log('Fetching cart count' + cartCount);
             try {
+                // const response = await fetch('http://localhost:8000/api/cart');
                 const response = await fetch('/api/cart');
                 const data = await response.json();
                 //if (data.userID === loggedInUser) { //TODO: Might not need this check because the addtocart already do this check...
@@ -83,7 +87,10 @@ const Navbar = () => {
                     <li onClick={()=>{setMenu("contact")}}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/contact'>Contact</Link>{menu==="contact"? <hr/>:<></>}</li>
                 </ul>
                 <div className="nav-login-cart">
-                    <Link to='/login'><button>Login</button></Link>
+
+                    <Login />
+
+                    {/* <Link to='/login'><button disabled= {!googleOauthURL} onClick= {userLoginButton}>Login</button></Link> */}
                     <Link to='/cart'><Cart2  style={{fontSize: '40px' }} /></Link>
                     {/* Cart count */}
                     <div className="nav-cart-count">{cartCount}</div>           

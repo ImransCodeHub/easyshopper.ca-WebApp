@@ -17,6 +17,7 @@ const Shop = () => {
         const fetchProducts = async () => {
             let response;
             try {
+                // response = await fetch('http://localhost:8000/api/products');
                 response = await fetch('/api/products');
                 const data = await response.json();
                 setProducts(data); // Set products state variable
@@ -41,7 +42,8 @@ const Shop = () => {
             try {
                 console.log(productId + " added to cart testing");
                 // Send a POST request to the backend to add the product to the cart
-                const response = await fetch(`/api/cart/${productId}`, {
+                // const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
+                    const response = await fetch(`/api/cart/${productId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -54,6 +56,7 @@ const Shop = () => {
                     
                     try {
                         const response = await fetch('/api/cart');
+                        // const response = await fetch('http://localhost:8000/api/cart');
                         const data = await response.json();
                         //if (data.userID === loggedInUser) { //TODO: Might not need this check because the addtocart already do this check...
                             // setCartCount(data.cart.length);
