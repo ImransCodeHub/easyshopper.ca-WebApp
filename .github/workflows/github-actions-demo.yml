@@ -49,10 +49,10 @@ jobs:
         CI: ""
       run: |
         cd backend-lambda/getProductsLambda
-        npm init -y
+        # npm init -y
         npm install --force
-        npm install express
-        npm install mongodb
+        # npm install express
+        # npm install mongodb
         zip -9 GetProductsInfo.zip ./*
 # zip -9 GetProductsInfo.zip node_modules/ index.mjs package-lock.json package.json
     - name: Update getProducts Lambda

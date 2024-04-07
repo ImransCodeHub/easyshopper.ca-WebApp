@@ -1,11 +1,67 @@
 import express from 'express';
 import cors from 'cors';
 import client from './mongo.js';
+import jwt from 'jsonwebtoken';
+import { getGoogleOauthURL, oauthClient } from './oauthClient.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+// TODO: Add a JWT secret key to the .env file
+const JWTSecret = "test123";
+
+const googleOauthURL = getGoogleOauthURL();
+
+const getAccessAndBearerTokenUrl = (assess_token) => {
+    return `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${assess_token}`;
+}
+
+app.get('/api/google/auth/callback', async (req, res) => {
+    const { code } = req.query;
+    const { tokens } = await oauthClient.getToken(code);
+    
+    // oauthClient.setCredentials(tokens);
+    // const { data } = await oauthClient.get(getAccessAndBearerTokenUrl(tokens.access_token));
+    // res.json(data);
+
+    const url = getAccessAndBearerTokenUrl(tokens.access_token);
+
+    const myHeaders = new Headers();
+    const bearerToken= `Bearer ${tokens.access_token}`;
+    myHeaders.append("Authorization", bearerToken);
+
+    const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    //TODO: Update the user in the database if the user already exists, else create a new user
+
+    //TODO: Redirect to the login page with the JWT token - update the url
+    fetch(url, requestOptions)
+        .then((response) => response.json())
+        //.then((result) => updateOrCreateUserFromOauth(result))
+        .then((user) => {
+            console.log(user)
+            jwt.sign( {"name":user.name, "email":user.email}, JWTSecret, {expiresIn: '2d'}, (err, token) => {
+                if(err) {
+                    res.status(500).json(err);
+                }
+                res.redirect(`http://localhost:3000/login?token=${token}`); //TODO: Update the URL - nabar.jsx?
+            });
+        })
+        .catch((error) => 
+        {
+            console.error(error);
+            res.status(500).json(err);
+        });
+});
+
+app.get('/api/google/url', (req, res) => {
+    res.status(200).json({ url: googleOauthURL });
+});
 
 app.get('/api/products', async (req, res) => {
     const database = client.db('easyshopper');
