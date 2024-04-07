@@ -49,7 +49,7 @@ jobs:
         CI: ""
       run: |
         cd backend-lambda/getProductsLambda
-        npm install --no-audit --prefer-offline --no-fund
+        npm install 
         zip -r GetProductsInfo.zip ./*
         
     - name: Update getProducts Lambda
