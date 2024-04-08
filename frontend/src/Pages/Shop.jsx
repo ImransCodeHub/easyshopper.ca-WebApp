@@ -6,6 +6,8 @@ import Layout from '../Components/Layout';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 import { Plus } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
+
 
 const Shop = () => {
 
@@ -79,6 +81,8 @@ const Shop = () => {
         }
     };
 
+    const navigate = useNavigate();
+
     return (
 
         <Layout>
@@ -107,7 +111,7 @@ const Shop = () => {
                                 className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-450px]"
                                 // add hover effect
                                 style={{ cursor: 'pointer' }}
-                                onClick = {() => {window.location.href = `/product/${product.productId}`}}
+                                onClick = {() => navigate(`/products/${product.productId}`)}
                             />
                             </div>
 
@@ -146,34 +150,3 @@ const Shop = () => {
 };
 
 export default Shop;
-
-/* <section>
-    <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        <header>
-            <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">Product Collection</h2>
-        </header>
-
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <li>
-                {products.map((product) => (
-                    <a key={product.id} href={product.href} className="group block overflow-hidden">
-                        <img
-                            src={product.images[0]}
-                            alt={product.imageAlt}
-                            className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-                        />
-                        <div className="relative bg-white pt-3">
-                            <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                {product.name}
-                            </h3>
-                            <p className="mt-2">
-                                <span className="sr-only"> Regular Price </span>
-                                <span className="tracking-wider text-gray-900"> ${product.price} </span>
-                            </p>
-                        </div>
-                    </a>
-                ))}
-            </li> 
-        </ul>
-    </div>
-</section> */
