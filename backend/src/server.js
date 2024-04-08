@@ -17,6 +17,13 @@ const getAccessAndBearerTokenUrl = (assess_token) => {
     return `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${assess_token}`;
 }
 
+// const updateOrCreateUserFromOauth = async (user) => {
+//     const database = client.db('easyshopper');
+//     const users = database.collection('users');
+//     const existingUser = await
+//         users.findOne({ email: user.email });
+
+
 app.get('/api/google/auth/callback', async (req, res) => {
     const { code } = req.query;
     const { tokens } = await oauthClient.getToken(code);
