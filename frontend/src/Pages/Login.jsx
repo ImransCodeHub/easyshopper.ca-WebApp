@@ -8,25 +8,24 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     
+    const navigate = useNavigate();
+    
     // User login functionality
     const [googleOauthURL, setGoogleOauthURL] = useState();
     const [searchParams, setSearchParams] = useSearchParams();
     
-    // Track of the user's login status
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    const navigate = useNavigate();
-
-
     // Runs once when the component is loaded
     useEffect(() => {
         const token = searchParams.get('token');
 
-        if (token) {
-            localStorage.setItem('token', token);
-            setLoggedIn(true); // set the user's login status to true
-            navigate('/');
-        }
+        const handleTokenVerification = async () => {
+            if (token) {
+                localStorage.setItem('token', token);
+                //await checkLoginStatus();
+                navigate('/');
+            }
+        };
+        handleTokenVerification();
 
     }, []);
 
@@ -46,18 +45,98 @@ const Login = () => {
     const userLoginButton = () => {
         window.location.href = googleOauthURL;
     };
-            
-    if (loggedIn) {
-        console.log(loggedIn);
-        console.log('Logged in');
-        return (<Link to='/login'><button onClick={() => localStorage.clear()}>Logout</button></Link>)
-    }
-    else {
-        console.log(loggedIn);
-        console.log('Not logged in');        
-        return (<Link to='/login'><button disabled={!googleOauthURL} onClick={userLoginButton}>Login</button></Link>)
 
-    }
+
+    // const checkLoginStatus = async () => {
+    //     try {
+    //         // const response = await fetch('/api/verifyToken', {
+    //         const response = await fetch('http://localhost:8000/api/verifyToken', {
+    //             headers: {
+    //                 Authorization: `Bearer ${accessToken}`,
+    //             },
+    //         });
+    //         if (response.status === 200) {
+    //             console.log('User is verified and logged in');
+    //             setIsLoggedIn(true);
+    //             console.log(isLoggedIn);
+    //         } else {
+    //             setIsLoggedIn(false);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error verifying token:', error);
+    //         setIsLoggedIn(false);
+    //     }
+    // };
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const accessToken = localStorage.getItem('token');
+
+    const checkLogin = async () => {
+        if (!accessToken) {
+            setLoading(false);
+            navigate('/register');
+            //navigate(googleOauthURL); - future implementation
+        } else {
+            try {
+                // const response = await fetch('/api/verifyToken', {
+                const response = await fetch('http://localhost:8000/api/verifyToken', {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+                if (response.status === 200) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
+            } catch (error) {
+                console.error('Error verifying token:', error);
+                setIsLoggedIn(false);
+            } finally {
+                setLoading(false); // Set loading to false after the request completes
+            }
+        }
+    };
+
+    const userloggedIn = async () => {
+        try {
+            // const response = await fetch('/api/verifyToken', {
+            const response = await fetch('http://localhost:8000/api/verifyToken', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+            if (response.status === 200) {
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
+            }
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            setIsLoggedIn(false);
+        } finally {
+            setLoading(false); // Set loading to false after the request completes
+        }
+    };
+
+    useEffect(() => {
+        if (accessToken) {
+            userloggedIn();
+        } else {
+            setLoading(false);
+        }
+    }, [accessToken]);
+
+    return (
+        <div>
+            {isLoggedIn ? (
+                <Link to='/login'><button onClick={() => localStorage.clear()}>Logout</button></Link>
+            ) : (
+                <Link to='/login'><button disabled={!googleOauthURL} onClick={userLoginButton}>Login</button></Link>
+            )}
+        </div>
+    );
 };
 
 export default React.memo(Login); // Memoize the Login component
