@@ -6,10 +6,12 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    min-width: 65%;
+    max-width: 100%;
 }
 
 .table-container {
-    width: 85%;
+    width: 100%;
     max-width: 1100px;
     margin-top: 20px;
 }

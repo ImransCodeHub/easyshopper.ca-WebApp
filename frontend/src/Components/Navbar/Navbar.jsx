@@ -51,6 +51,7 @@ const Navbar = ({ cartCount, setCartCount }) => {
         }else{
             const currentUrl = window.location.href;
             const page = (currentUrl.slice(currentUrl.lastIndexOf('/') + 1));
+            console.log(page);
             setMenu(page);
         }
         

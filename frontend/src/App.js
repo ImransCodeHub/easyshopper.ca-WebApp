@@ -9,6 +9,7 @@ import Login from './Pages/Login';
 import ThankYou from './Pages/ThankYou';
 import Layout from './Components/Layout';
 import Register from './Pages/Register';
+import Success from './Pages/Success';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/thankyou" element={<ThankYou />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/success" element={<Success />} />
         </Routes>
       </BrowserRouter>
     </div>
