@@ -15,7 +15,7 @@ const About = () => {
                 />
 
                 <div>
-                    <h3 className="text-lg/tight font-medium text-gray-900">Developer</h3>
+                    <h3 className="text-lg/tight font-medium text-gray-900 text-center">Developer</h3>
 
                     <p className="mt-0.5 text-gray-700 text-center">
                         Capstone project for CNA Software Development Co-op course.
