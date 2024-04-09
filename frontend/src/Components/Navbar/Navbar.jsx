@@ -9,12 +9,12 @@ import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Login from '../../Pages/Login';
 
-const Navbar = ({cartCount, setCartCount}) => {
+const Navbar = ({ cartCount, setCartCount }) => {
 
     const accessToken = localStorage.getItem('token');
     
     const fetchCartCount = async () => {
-        console.log('Fetching cart count' + cartCount); // Debugging statement
+        //console.log('Fetching cart count' + cartCount); // Debugging statement
         try {
             // const response = await fetch('/api/cart');
             const response = await fetch('http://localhost:8000/api/cart', {
@@ -24,9 +24,14 @@ const Navbar = ({cartCount, setCartCount}) => {
             
             });
             const data = await response.json();
-            // setCartCount(data.cart.length);
+            console.log('fetchCart NavBar data value: ' + JSON.stringify(data.cart.length));
+
             // make setCartCount a function that takes a parameter
+            
+            // currently sets the number of different products in cart
             setCartCount(data.cart.length);
+
+            return data;
         }
         catch (error) {
             console.error("Error fetching data:", error);
