@@ -1,4 +1,4 @@
-## Website URL: https://d24m5ur38vbnyo.cloudfront.net/shop
+## Website URL: https://easyshopper.ca/
 
 ## Frontend Requirements
 `npm install` 
