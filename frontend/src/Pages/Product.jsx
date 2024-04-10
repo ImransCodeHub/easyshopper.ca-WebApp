@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Layout from '../Components/Layout';
+
 
 const Product = ({fetchCartCount}) => {
     const navigate = useNavigate();
@@ -92,8 +92,8 @@ const Product = ({fetchCartCount}) => {
         
     };
 
+
     return (
-        <Layout>
         <div>
             {product && (
                 <>
@@ -132,7 +132,6 @@ const Product = ({fetchCartCount}) => {
                 </>
             )}
         </div>
-        </Layout>
     );
 };
 

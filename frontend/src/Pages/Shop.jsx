@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './CSS/Shop.css';
 import { useState, useEffect } from 'react';
@@ -6,7 +5,8 @@ import Layout from '../Components/Layout';
 import { Plus } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Shop = ({fetchCartCount }) => {
+
+const Shop = ({fetchCartCount}) => {
     const navigate = useNavigate();
 
     // State variable to store loading state
@@ -94,7 +94,7 @@ const Shop = ({fetchCartCount }) => {
 
     return (
 
-        <Layout>
+        //<Layout>
             <div className="pt-20"> {/* Add padding top to create space below the navbar. Can add bg-black for bg*/}
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 
@@ -154,7 +154,7 @@ const Shop = ({fetchCartCount }) => {
                     </div>
                 </div>
             </div>
-        </Layout>
+        //</Layout>
     );
 };
 

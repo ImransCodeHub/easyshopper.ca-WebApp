@@ -1,4 +1,3 @@
-
 // E-Commerce Navbar Component in React for Easyshopper which is online shopping website.
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
@@ -10,11 +9,11 @@ import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Login from '../../Pages/Login';
 
-const Navbar = ({ fetchCartCount, cartCount }) => {
+const Navbar = ({ cartCount, fetchCartCount }) => {
 
     // Fetch cart count on page load - useEffect to run only once
     useEffect(() => {
-        // Move fetchCartCount code to app.js as parent component
+    // Move fetchCartCount code to app.js as parent component
         fetchCartCount();
     }, []); 
 
