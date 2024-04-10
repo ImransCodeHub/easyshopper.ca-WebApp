@@ -20,7 +20,7 @@ export const handler = async (event) => {
     const database = client.db('easyshopper');
     const products = database.collection('products');
     const product = await products.find({}).toArray();
-    const allProducts = res.json(product);
+    const allProducts = product;
 
     console.log(allProducts);
     return allProducts;

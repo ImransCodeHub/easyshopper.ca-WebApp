@@ -5,8 +5,42 @@ import logo from '../Assets/web-logo-v0.3.png';
 import cartlogo from '../Assets/shopping-cart.png';
 import { Link } from 'react-router-dom';
 import { Cart2 } from 'react-bootstrap-icons';
+import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Login from '../../Pages/Login';
 
-const Navbar = () => {
+const Navbar = ({ cartCount, setCartCount }) => {
+
+    const accessToken = localStorage.getItem('token');
+    
+    const fetchCartCount = async () => {
+        //console.log('Fetching cart count' + cartCount); // Debugging statement
+        try {
+            // const response = await fetch('/api/cart');
+            const response = await fetch('http://localhost:8000/api/cart', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            
+            });
+            const data = await response.json();
+            console.log('fetchCart NavBar data value: ' + JSON.stringify(data.cart.length));
+
+            // make setCartCount a function that takes a parameter
+            
+            // currently sets the number of different products in cart
+            setCartCount(data.cart.length);
+
+            return data;
+        }
+        catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
+    useEffect(() => {
+        fetchCartCount();
+    }, []); 
 
     // Active menu item state
     const [menu, setMenu] = React.useState();
@@ -17,6 +51,7 @@ const Navbar = () => {
         }else{
             const currentUrl = window.location.href;
             const page = (currentUrl.slice(currentUrl.lastIndexOf('/') + 1));
+            console.log(page);
             setMenu(page);
         }
         
@@ -40,29 +75,8 @@ const Navbar = () => {
         setPrevScrollpos(currentScrollPos);
         setVisible(visible);
     };
-
-    const [cartCount, setCartCount] = useState();
-
-    useEffect(() => {
-
-        // Get the logged in user from local storage
-        // const loggedInUser = localStorage.getItem('email');
-
-        const fetchCartCount = async () => {
-            console.log('Fetching cart count' + cartCount);
-            try {
-                const response = await fetch('/api/cart');
-                const data = await response.json();
-                //if (data.userID === loggedInUser) { //TODO: Might not need this check because the addtocart already do this check...
-                    setCartCount(data.cart.length);
-                //}
-            }
-            catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        }
-        fetchCartCount();
-    }, []); //Bug: The cart count is not updating when a product is added to the cart. Fix: Added a copy method to the shop and product page to update the cart count.
+    
+    //Bug: The cart count is not updating when a product is added to the cart. Fix: Added a copy method to the shop and product page to update the cart count.
 
     return (
         <div className={`navbar ${visible ? 'navbar-visible' : 'navbar-hidden'}`}>
@@ -83,7 +97,10 @@ const Navbar = () => {
                     <li onClick={()=>{setMenu("contact")}}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/contact'>Contact</Link>{menu==="contact"? <hr/>:<></>}</li>
                 </ul>
                 <div className="nav-login-cart">
-                    <Link to='/login'><button>Login</button></Link>
+
+                    <Login />
+
+                    {/* <Link to='/login'><button disabled= {!googleOauthURL} onClick= {userLoginButton}>Login</button></Link> */}
                     <Link to='/cart'><Cart2  style={{fontSize: '40px' }} /></Link>
                     {/* Cart count */}
                     <div className="nav-cart-count">{cartCount}</div>           

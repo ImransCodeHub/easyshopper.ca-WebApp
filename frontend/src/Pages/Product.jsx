@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 const Product = () => {
+    const navigate = useNavigate();
+
     const [product, setProduct] = useState(null);
     const { productId } = useParams();
 
@@ -11,7 +14,8 @@ const Product = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`/api/products/${productId}`);
+                const response = await fetch(`http://localhost:8000/api/products/${productId}`);
+                //const response = await fetch(`/api/products/${productId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -27,34 +31,88 @@ const Product = () => {
         fetchProductDetails();
     }, [productId]);
 
-    //TODO: Remove this method and use the one from Shop.jsx - keep in mind the quantity of the product has taken from the state
-    const addToCart = async (productId) => {
-        const loggedIn = true;
-        if (!loggedIn) { // Do the login part!
-            // Redirect to the login page if the user is not logged in
-            window.location.href = '/login';
-            return;
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const accessToken = localStorage.getItem('token');
+
+    const checkLogin = async () => {
+        if (!accessToken) {
+            setLoading(false);
+            navigate('/register');
+            //navigate(googleOauthURL); - future implementation
         } else {
             try {
-                console.log(productId + " added to cart testing");
-                console.log(amount);
-                // Send a POST request to the backend to add the product to the cart
-                const response = await fetch(`/api/cart/${productId}`, {
-                    method: 'POST',
+                // const response = await fetch('/api/verifyToken', {
+                const response = await fetch('http://localhost:8000/api/verifyToken', {
                     headers: {
-                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
                     },
-                    body: JSON.stringify({ quantity: amount }),
                 });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                if (response.status === 200) {
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
                 }
             } catch (error) {
-                console.error('Error adding to cart:', error);
+                console.error('Error verifying token:', error);
+                setIsLoggedIn(false);
+            } finally {
+                setLoading(false); // Set loading to false after the request completes
             }
         }
     };
+
+    const [cartCount, setCartCount] = useState();
+
+    //TODO: Remove this method and use the one from Shop.jsx - keep in mind the quantity of the product has taken from the state
+    const addToCart = async (productId) => {
+        checkLogin();
+
+        try {
+            console.log(productId + " adding to cart attempt... Quantity: " + amount);
+
+            const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
+            //const response = await fetch(`/api/cart/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: JSON.stringify({ quantity: amount }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error adding to cart');
+            }
+
+            // Bug: The cart count is not updating when a product is added to the cart. Fix:
+            const fetchCartCount = async () => {
+    
+                try {
+                    //const response = await fetch('/api/cart');
+                    const response = await fetch('http://localhost:8000/api/cart', {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                        },
+                    });
+                    const data = await response.json();
+                    setCartCount(data.cart.length);
+
+                    console.log('Cart count from shop code:', cartCount);
+                    // now how to update the cart count in the navbar using the cartCount state variable in the shop page?
+                }
+                catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            }
+            fetchCartCount();
+
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+        }
+        
+    };
+
 
     return (
         <div>
