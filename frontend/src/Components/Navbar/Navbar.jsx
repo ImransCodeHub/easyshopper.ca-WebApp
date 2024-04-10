@@ -1,3 +1,4 @@
+
 // E-Commerce Navbar Component in React for Easyshopper which is online shopping website.
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
@@ -9,36 +10,11 @@ import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Login from '../../Pages/Login';
 
-const Navbar = ({ cartCount, setCartCount }) => {
+const Navbar = ({ fetchCartCount, cartCount }) => {
 
-    const accessToken = localStorage.getItem('token');
-    
-    const fetchCartCount = async () => {
-        //console.log('Fetching cart count' + cartCount); // Debugging statement
-        try {
-            // const response = await fetch('/api/cart');
-            const response = await fetch('http://localhost:8000/api/cart', {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            
-            });
-            const data = await response.json();
-            console.log('fetchCart NavBar data value: ' + JSON.stringify(data.cart.length));
-
-            // make setCartCount a function that takes a parameter
-            
-            // currently sets the number of different products in cart
-            setCartCount(data.cart.length);
-
-            return data;
-        }
-        catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }
-
+    // Fetch cart count on page load - useEffect to run only once
     useEffect(() => {
+        // Move fetchCartCount code to app.js as parent component
         fetchCartCount();
     }, []); 
 
@@ -76,8 +52,6 @@ const Navbar = ({ cartCount, setCartCount }) => {
         setVisible(visible);
     };
     
-    //Bug: The cart count is not updating when a product is added to the cart. Fix: Added a copy method to the shop and product page to update the cart count.
-
     return (
         <div className={`navbar ${visible ? 'navbar-visible' : 'navbar-hidden'}`}>
             {/* <div className='nav-logo'>

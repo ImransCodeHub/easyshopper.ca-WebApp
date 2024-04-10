@@ -6,7 +6,7 @@ import '../App.css';
 function Layout({ children }) {
   return (
     <div className='App'>
-      <Navbar />
+      {/* <Navbar /> - Bug: This was causing the Navbar to render twice, creating a duplicate Navbar */}
 
       <main className='layout'>
         {children}
