@@ -15,21 +15,15 @@ const About = () => {
                 />
 
                 <div>
-                    <h3 className="text-lg/tight font-medium text-gray-900 text-center">Developer</h3>
+                    <h3 className="text-lg/tight font-medium text-gray-900">Developer</h3>
 
                     <p className="mt-0.5 text-gray-700 text-center">
-                        Capstone project for CNA Software Development Co-op course.
-
-                        The Software Development Co-op three-year program focuses on the competencies
-                        required to design, implement, and maintain software systems that operate in a secure 
-                        business networked environment containing stationary and mobile devices. The program 
-                        combines theoretical and practical learning experiences in a team-oriented setting.
+                        Capstone project for CNA Software Development course.
                     </p>
 
 
                     <p className="mt-0.5 text-gray-700 text-center">
-                        Developed by: 
-                        <span className="text-blue-500">David Sparks, Imran Moin, Alberta Hansen, and Jack Husk</span>
+                        Developed by: <span className="text-blue-500">David</span>
                     </p>
 
                 </div>

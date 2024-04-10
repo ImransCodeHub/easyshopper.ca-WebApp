@@ -1,5 +1,3 @@
-## Website URL: https://easyshopper.ca/
-
 ## Frontend Requirements
 `npm install` 
 
