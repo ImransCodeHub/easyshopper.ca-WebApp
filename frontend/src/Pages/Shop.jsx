@@ -1,3 +1,4 @@
+
 import React from 'react';
 import './CSS/Shop.css';
 import { useState, useEffect } from 'react';
@@ -5,8 +6,7 @@ import Layout from '../Components/Layout';
 import { Plus } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 
-
-const Shop = ({cartCount, setCartCount }) => {
+const Shop = ({fetchCartCount }) => {
     const navigate = useNavigate();
 
     // State variable to store loading state
@@ -83,27 +83,8 @@ const Shop = ({cartCount, setCartCount }) => {
                 throw new Error('Error adding to cart');
             }
 
-            // Bug: The cart count is not updating when a product is added to the cart. Fix:
-            // const fetchCartCount = async () => {
-                
-            //     try {
-            //         //const response = await fetch('/api/cart');
-            //         const response = await fetch('http://localhost:8000/api/cart', {
-            //             headers: {
-            //                 Authorization: `Bearer ${accessToken}`,
-            //             },
-            //         });
-            //         const data = await response.json();
-            //         setCartCount(data.cart.length);
-
-            //         console.log('Cart count from shop code:', cartCount);
-            //         // now how to update the cart count in the navbar using the cartCount state variable in the shop page?
-            //     }
-            //     catch (error) {
-            //         console.error("Error fetching data:", error);
-            //     }
-            // }
-            // fetchCartCount();
+            // Move fetchCartCount code to app.js as parent component
+            fetchCartCount();
 
         } catch (error) {
             console.error('Error adding to cart:', error);
