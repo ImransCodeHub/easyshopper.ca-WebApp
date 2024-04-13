@@ -73,7 +73,8 @@ app.get('/api/google/auth/callback', async (req, res) => {
                 if(err) {
                     res.status(500).json(err);
                 }
-                res.redirect(`http://localhost:3000/login?token=${token}`); //TODO: Update the URL - nabar.jsx?
+                res.redirect(`${process.env.APP_URL}/login?token=${token}`);
+                //res.redirect(`http://localhost:3000/login?token=${token}`); //TODO: Update the URL - nabar.jsx?
             });
         })
         .catch((error) => 
