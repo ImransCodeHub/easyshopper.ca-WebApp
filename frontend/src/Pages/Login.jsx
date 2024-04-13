@@ -100,24 +100,33 @@ const Login = () => {
     };
 
     const userloggedIn = async () => {
-        try {
-            const response = await fetch('/api/verifyToken', {
-            //const response = await fetch('http://localhost:8000/api/verifyToken', {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                },
-            });
-            if (response.status === 200) {
-                setIsLoggedIn(true);
-            } else {
-                setIsLoggedIn(false);
-            }
-        } catch (error) {
-            console.error('Error verifying token:', error);
+        
+        // check if there's a localstorage token
+        // if so, user is logged in
+        if (localStorage.getItem("token")) {
+            setIsLoggedIn(true);
+        } else {
             setIsLoggedIn(false);
-        } finally {
-            setLoading(false); // Set loading to false after the request completes
         }
+
+        // try {
+        //     const response = await fetch('/api/verifyToken', {
+        //     //const response = await fetch('http://localhost:8000/api/verifyToken', {
+        //         headers: {
+        //             Authorization: `Bearer ${accessToken}`,
+        //         },
+        //     });
+        //     if (response.status === 200) {
+        //         setIsLoggedIn(true);
+        //     } else {
+        //         setIsLoggedIn(false);
+        //     }
+        // } catch (error) {
+        //     console.error('Error verifying token:', error);
+        //     setIsLoggedIn(false);
+        // } finally {
+        //     setLoading(false); // Set loading to false after the request completes
+        // }
     };
 
     useEffect(() => {
