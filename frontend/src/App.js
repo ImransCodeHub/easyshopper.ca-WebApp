@@ -22,8 +22,8 @@ function App() {
     
   const fetchCartCount = async () => {
       try {
-          // const response = await fetch('/api/cart');
-          const response = await fetch('http://localhost:8000/api/cart', {
+          const response = await fetch('/api/cart', {
+          //const response = await fetch('http://localhost:8000/api/cart', {
               headers: {
                   Authorization: `Bearer ${accessToken}`,
               },
