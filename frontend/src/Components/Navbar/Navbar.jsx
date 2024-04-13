@@ -69,10 +69,10 @@ const Navbar = ({ cartCount, fetchCartCount }) => {
                     <li onClick={()=>{setMenu("about")}}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/about'>About</Link>{menu==="about"? <hr/>:<></>}</li>
                     <li onClick={()=>{setMenu("contact")}}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/contact'>Contact</Link>{menu==="contact"? <hr/>:<></>}</li>
                 </ul>
-                <div className="nav-login-cart">
-
+                <div>
                     <Login />
-
+                </div>
+                <div className="nav-login-cart">
                     {/* <Link to='/login'><button disabled= {!googleOauthURL} onClick= {userLoginButton}>Login</button></Link> */}
                     <Link to='/cart'><Cart2  style={{fontSize: '40px' }} /></Link>
                     {/* Cart count */}
