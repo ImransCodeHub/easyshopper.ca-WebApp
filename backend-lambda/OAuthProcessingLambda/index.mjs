@@ -61,7 +61,7 @@ const updateOrCreateUserFromOauth = async (oauthUserInfo) => {
 
     try {
         await client.connect();
-        const database = client.db("bicycle-store");
+        const database = client.db("easyshopper");
         const users = database.collection("users");
         const existingUser = await users.findOne({email})
 
@@ -73,7 +73,7 @@ const updateOrCreateUserFromOauth = async (oauthUserInfo) => {
             return result;
         }
         else {
-            const result = await users.insertOne( {email, name});
+            const result = await users.insertOne({email, name});
             return { email, name, _id: result.insertedId };
         }
     }

@@ -42,17 +42,24 @@ const Product = ({fetchCartCount}) => {
             //navigate(googleOauthURL); - future implementation
         } else {
             try {
-                const response = await fetch('/api/verifyToken', {
-                //const response = await fetch('http://localhost:8000/api/verifyToken', {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
-                if (response.status === 200) {
+
+                if (localStorage.getItem("token")) {
                     setIsLoggedIn(true);
                 } else {
                     setIsLoggedIn(false);
                 }
+
+                // const response = await fetch('/api/verifyToken', {
+                // //const response = await fetch('http://localhost:8000/api/verifyToken', {
+                //     headers: {
+                //         Authorization: `Bearer ${accessToken}`,
+                //     },
+                // });
+                // if (response.status === 200) {
+                //     setIsLoggedIn(true);
+                // } else {
+                //     setIsLoggedIn(false);
+                // }
             } catch (error) {
                 console.error('Error verifying token:', error);
                 setIsLoggedIn(false);
