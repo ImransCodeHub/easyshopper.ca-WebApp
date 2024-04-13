@@ -14,8 +14,8 @@ const Product = ({fetchCartCount}) => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/products/${productId}`);
-                //const response = await fetch(`/api/products/${productId}`);
+                //const response = await fetch(`http://localhost:8000/api/products/${productId}`);
+                const response = await fetch(`/api/products/${productId}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -42,8 +42,8 @@ const Product = ({fetchCartCount}) => {
             //navigate(googleOauthURL); - future implementation
         } else {
             try {
-                // const response = await fetch('/api/verifyToken', {
-                const response = await fetch('http://localhost:8000/api/verifyToken', {
+                const response = await fetch('/api/verifyToken', {
+                //const response = await fetch('http://localhost:8000/api/verifyToken', {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
@@ -69,8 +69,8 @@ const Product = ({fetchCartCount}) => {
         try {
             console.log(productId + " adding to cart attempt... Quantity: " + amount);
 
-            const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
-            //const response = await fetch(`/api/cart/${productId}`, {
+            //const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
+            const response = await fetch(`/api/cart/${productId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

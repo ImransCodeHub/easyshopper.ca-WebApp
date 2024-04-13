@@ -31,8 +31,8 @@ const Login = () => {
 
     // Runs once when the component is loaded
     useEffect(() => {
-        fetch('http://localhost:8000/api/google/url')
-        // fetch('/api/google/url')
+        //fetch('http://localhost:8000/api/google/url')
+        fetch('/api/google/url')
             .then(response => response.json())
             .then(data => setGoogleOauthURL(data.url))
             .catch(error => {
@@ -79,8 +79,8 @@ const Login = () => {
             //navigate(googleOauthURL); - future implementation
         } else {
             try {
-                // const response = await fetch('/api/verifyToken', {
-                const response = await fetch('http://localhost:8000/api/verifyToken', {
+                const response = await fetch('/api/verifyToken', {
+                //const response = await fetch('http://localhost:8000/api/verifyToken', {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
@@ -101,8 +101,8 @@ const Login = () => {
 
     const userloggedIn = async () => {
         try {
-            // const response = await fetch('/api/verifyToken', {
-            const response = await fetch('http://localhost:8000/api/verifyToken', {
+            const response = await fetch('/api/verifyToken', {
+            //const response = await fetch('http://localhost:8000/api/verifyToken', {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },

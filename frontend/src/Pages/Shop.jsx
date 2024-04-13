@@ -43,8 +43,8 @@ const Shop = ({fetchCartCount}) => {
             //navigate(googleOauthURL); - future implementation
         } else {
             try {
-                // const response = await fetch('/api/verifyToken', {
-                const response = await fetch('http://localhost:8000/api/verifyToken', {
+                const response = await fetch('/api/verifyToken', {
+                //const response = await fetch('http://localhost:8000/api/verifyToken', {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
