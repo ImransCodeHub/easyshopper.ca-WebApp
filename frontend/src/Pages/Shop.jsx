@@ -19,8 +19,8 @@ const Shop = ({fetchCartCount}) => {
         const fetchProducts = async () => {
             let response;
             try {
-                response = await fetch('http://localhost:8000/api/products');
-                //response = await fetch('/api/products');
+                //response = await fetch('http://localhost:8000/api/products');
+                response = await fetch('/api/products');
                 const data = await response.json();
                 setProducts(data); // Set products state variable
                 console.log(data);
@@ -69,8 +69,8 @@ const Shop = ({fetchCartCount}) => {
         try {
             console.log(productId + " adding to cart attempt...");
 
-            const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
-            //const response = await fetch(`/api/cart/${productId}`, {
+            //const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
+            const response = await fetch(`/api/cart/${productId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
