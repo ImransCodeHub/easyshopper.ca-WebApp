@@ -30,8 +30,14 @@ export const handler = async (event) => {
                 body: JSON.stringify({ error: 'Product not found' })
             };
         }
+    
+        console.log('Event: ', event);
 
-        return product;
+        // return product;
+    return {
+            statusCode: 200,
+            body: JSON.stringify(product)
+        };
     }   
     finally {
         await client.close();
