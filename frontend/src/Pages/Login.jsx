@@ -72,32 +72,32 @@ const Login = () => {
     const [loading, setLoading] = useState(true);
     const accessToken = localStorage.getItem('token');
 
-    const checkLogin = async () => {
-        if (!accessToken) {
-            setLoading(false);
-            navigate('/register');
-            //navigate(googleOauthURL); - future implementation
-        } else {
-            try {
-                const response = await fetch('/api/verifyToken', {
-                //const response = await fetch('http://localhost:8000/api/verifyToken', {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                });
-                if (response.status === 200) {
-                    setIsLoggedIn(true);
-                } else {
-                    setIsLoggedIn(false);
-                }
-            } catch (error) {
-                console.error('Error verifying token:', error);
-                setIsLoggedIn(false);
-            } finally {
-                setLoading(false); // Set loading to false after the request completes
-            }
-        }
-    };
+    // const checkLogin = async () => {
+    //     if (!accessToken) {
+    //         setLoading(false);
+    //         navigate('/register');
+    //         //navigate(googleOauthURL); - future implementation
+    //     } else {
+    //         try {
+    //             const response = await fetch('/api/verifyToken', {
+    //             //const response = await fetch('http://localhost:8000/api/verifyToken', {
+    //                 headers: {
+    //                     Authorization: `Bearer ${accessToken}`,
+    //                 },
+    //             });
+    //             if (response.status === 200) {
+    //                 setIsLoggedIn(true);
+    //             } else {
+    //                 setIsLoggedIn(false);
+    //             }
+    //         } catch (error) {
+    //             console.error('Error verifying token:', error);
+    //             setIsLoggedIn(false);
+    //         } finally {
+    //             setLoading(false); // Set loading to false after the request completes
+    //         }
+    //     }
+    // };
 
     const userloggedIn = async () => {
         
