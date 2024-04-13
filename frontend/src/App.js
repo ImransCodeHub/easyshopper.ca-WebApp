@@ -56,7 +56,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} /> 
             <Route path="/products/:productId" element={<Product fetchCartCount={fetchCartCount} />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart fetchCartCount={fetchCartCount} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/thankyou" element={<ThankYou />} />
             <Route path="/register" element={<Register />} />

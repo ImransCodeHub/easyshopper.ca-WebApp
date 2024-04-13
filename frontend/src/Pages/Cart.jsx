@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/Cart.css';
 
-const Cart = () => {
+const Cart = ({fetchCartCount}) => {
 
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -70,6 +70,7 @@ const Cart = () => {
             if (response.ok) {
                 const updatedCart = cartItems.filter(item => item.productId != productId);
                 setCartItems(updatedCart);
+                fetchCartCount();
             } else {
                 console.error('Error - Bad response');
             }
