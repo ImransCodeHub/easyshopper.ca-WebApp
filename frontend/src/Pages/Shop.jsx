@@ -23,6 +23,7 @@ const Shop = ({fetchCartCount}) => {
                 response = await fetch('/api/products');
                 const data = await response.json();
                 setProducts(data); // Set products state variable
+                setLoading(false);
                 console.log(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -97,6 +98,20 @@ const Shop = ({fetchCartCount}) => {
         
     };
 
+    if (loading) {
+        const loadingImage = <div class="w-full gap-x-2 flex justify-center items-center">
+        <div
+          class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
+        ></div>
+        <div
+          class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
+        ></div>
+        <div
+          class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+        ></div>
+      </div>
+    };
+
     return (
 
         //<Layout>
@@ -114,7 +129,7 @@ const Shop = ({fetchCartCount}) => {
                     </header>
 
                     <h2 className="sr-only">Products</h2>
-
+                    {loading}
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 pt-10">
                         {products.map((product) => (
                         <a key={product.productId} href={product.href} className="group">
