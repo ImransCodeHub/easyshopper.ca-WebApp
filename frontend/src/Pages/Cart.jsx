@@ -11,8 +11,8 @@ const Cart = () => {
 
     const fetchProductInfo = async (productId) => {
         try {
-            //const response = fetch(`/api/products/${productId}`);
-            const response = fetch(`http://localhost:8000/api/products/${productId}`);
+            const response = fetch(`/api/products/${productId}`);
+            //const response = fetch(`http://localhost:8000/api/products/${productId}`);
             const productData = (await response).json();
             console.log('Product info json being fetched: ' + JSON.stringify(productData));
 
@@ -26,8 +26,8 @@ const Cart = () => {
 
     const fetchCartData = async () => {
         try {
-            //const response = await fetch('/api/cart', { 
-            const response = await fetch('http://localhost:8000/api/cart', { 
+            const response = await fetch('/api/cart', { 
+            //const response = await fetch('http://localhost:8000/api/cart', { 
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 }
@@ -59,8 +59,8 @@ const Cart = () => {
 
     const handleDeleteClick = async (productId) => {
         try {
-            //const response = await fetch(`/api/cart/${productId}`, {
-            const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
+            const response = await fetch(`/api/cart/${productId}`, {
+            //const response = await fetch(`http://localhost:8000/api/cart/${productId}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
