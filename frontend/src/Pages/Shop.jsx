@@ -130,7 +130,7 @@ const Shop = ({fetchCartCount}) => {
 
                     <h2 className="sr-only">Products</h2>
                     {loading}
-                    <div>
+                    <div className='center-loading'>
                     {
                         (() => {
                             if(loading) {
