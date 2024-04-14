@@ -86,7 +86,8 @@ const Cart = ({fetchCartCount}) => {
         try {
             // loop through the cart - delete all products
             for (const cartItem of cartItems) {
-                await fetch(`http://localhost:8000/api/cart/${cartItem.productId}`, {
+                //await fetch(`http://localhost:8000/api/cart/${cartItem.productId}`, {
+                await fetch(`/api/cart/${cartItem.productId}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
