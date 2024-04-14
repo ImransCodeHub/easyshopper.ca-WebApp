@@ -127,6 +127,28 @@ const Cart = ({fetchCartCount}) => {
                 </div>
             ) : (
                 <div className='cart-container'>
+                    <div className='center-loading'>
+                    {
+                        (() => {
+                            if(loading) {
+                                    return (
+                                        <div class="w-full gap-x-2 flex justify-center items-center">
+                                            <div
+                                              class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
+                                            ></div>
+                                            <div
+                                              class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
+                                            ></div>
+                                            <div
+                                              class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+                                            ></div>
+                                          </div>
+                                    )
+                                }
+                        })()  
+                    }
+                    </div>
+                    
                     <h1 className='cart-h1'>Shopping Cart</h1>
                     <div className='table-container'>
                         <table className='cart-table'>
