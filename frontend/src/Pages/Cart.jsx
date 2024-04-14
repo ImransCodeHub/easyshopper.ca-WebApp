@@ -6,6 +6,7 @@ const Cart = ({fetchCartCount}) => {
 
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     const accessToken = localStorage.getItem('token');
 
@@ -48,7 +49,7 @@ const Cart = ({fetchCartCount}) => {
                     totalPrice: item.quantity * productInfo.price
                 };
             }));
-
+            setLoading(false);
             setCartItems(cartItemsWithProductInfo);
 
             // loop through products in the cart and 
@@ -119,6 +120,20 @@ const Cart = ({fetchCartCount}) => {
         calculateTotalCartPrice();
     }, [cartItems]);
 
+    if (loading) {
+        const loadingImage = <div class="w-full gap-x-2 flex justify-center items-center">
+        <div
+          class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
+        ></div>
+        <div
+          class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
+        ></div>
+        <div
+          class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+        ></div>
+      </div>
+    };
+
     return (
         <div className='cart-container'>
             {cartItems.length === 0 ? (
@@ -127,6 +142,7 @@ const Cart = ({fetchCartCount}) => {
                 </div>
             ) : (
                 <div className='cart-container'>
+                    {loading}
                     <div className='center-loading'>
                     {
                         (() => {
@@ -148,7 +164,7 @@ const Cart = ({fetchCartCount}) => {
                         })()  
                     }
                     </div>
-                    
+
                     <h1 className='cart-h1'>Shopping Cart</h1>
                     <div className='table-container'>
                         <table className='cart-table'>

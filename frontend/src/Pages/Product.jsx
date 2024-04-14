@@ -22,6 +22,7 @@ const Product = ({fetchCartCount}) => {
                 }
                 const productData = await response.json();
                 console.log('Product details:', productData);
+                setLoading(false);
                 setProduct(productData);
                 setActiveImage(productData.images[0])
             } catch (error) {
@@ -103,6 +104,7 @@ const Product = ({fetchCartCount}) => {
 
     return (
         <div>
+            {loading}
             <div className='center-loading'>
                     {
                         (() => {
