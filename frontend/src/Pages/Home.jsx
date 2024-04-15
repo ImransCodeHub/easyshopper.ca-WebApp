@@ -15,24 +15,41 @@ const Home = () => {
         document.title = "Easy Shopper";
     }, []);
 
+
+
+    
     return (
-        <Layout>
-            {/* build a hero section with tailwind */}
+        <>
+            <Layout>
+                {/* build a hero section with tailwind */}
 
 
-            <br />
+                <br />
+                <div className="container">
+                    <h1 className="centered-text">Welcome to EasyShopper.ca</h1>
+                    <h1 className='typewriter-start'>Your one-stop shop for 
+                        <span style={{fontWeight: 'bold', color: 'green', marginLeft: '20px'}}>
+                            {text}
+                        </span>
+                        <span style={{color: 'red'}}>
+                            <Cursor cursorStyle = '<' />
+                        </span>
+                    </h1>
+                </div>
+            </Layout>
+
+            {/* Additional space */}
+            <div style={{ height: '50vh' }}></div>
+
+            {/* Image further down the page */}
             <div className="container">
-                <h1 className="centered-text">Welcome to EasyShopper.ca</h1>
-                <h1 className='typewriter-start'>Your one-stop shop for 
-                    <span style={{fontWeight: 'bold', color: 'green', marginLeft: '20px'}}>
-                        {text}
-                    </span>
-                    <span style={{color: 'red'}}>
-                        <Cursor cursorStyle = '<' />
-                    </span>
-                </h1>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <img src="https://i.imgur.com/xxZK3Ds.jpg" alt="Easy Shopper" style={{ width: '20%' }} />
+                </div>
             </div>
-        </Layout>
+        
+        </>
+    
     );
 };
 
