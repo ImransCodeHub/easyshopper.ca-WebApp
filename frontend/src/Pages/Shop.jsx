@@ -122,8 +122,7 @@ const Shop = ({fetchCartCount}) => {
                         <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">Product Collection</h2>
 
                         <p className="mt-4 max-w-md mx-auto text-gray-500">
-                        Welcome to our product collection!  
-                        Browse through our curated selection and discover your new choice!
+                        Browse our selection of handcrafted products for you to enjoy!
                         </p>
 
                     </header>
