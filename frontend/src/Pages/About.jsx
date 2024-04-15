@@ -57,10 +57,18 @@ const About = () => {
                         </p>
 
                         <br />
-                        <h3 className="text-lg/tight font-bold text-gray-900 text-center">Developers</h3>
+                        <h3 className="text-lg/tight font-bold text-gray-900 text-center">Developers: </h3>
+                        
+                        
                         <p className="mt-0.5 text-gray-700 text-center">
-                            <span className="text-blue-500">Alberta Hansen, Jack Husk, Imran Moin, and David Sparks</span>
+                            
+                            <span className="text-blue-500"><a href="https://www.linkedin.com/in/alberta-hansen-a97186228/">Alberta Hansen</a>, 
+                            <span className="text-black"> Jack Husk</span>, <a href="https://www.linkedin.com/in/imran-moin-/">Imran Moin</a> , <a href="https://www.linkedin.com/in/david-sparks-368b0226/"> and David Sparks</a></span>
+
                         </p>
+
+
+
 
                     </div>
                 </div>
