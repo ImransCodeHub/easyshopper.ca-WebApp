@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom';
 import '../Pages/CSS/Login.css';
 
 const Login = () => {
+
+    useEffect(() => {
+        document.title = "Login";
+    }, []);
     
     const navigate = useNavigate();
     

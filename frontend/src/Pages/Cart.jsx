@@ -4,6 +4,10 @@ import './CSS/Cart.css';
 
 const Cart = ({fetchCartCount}) => {
 
+    useEffect(() => {
+        document.title = "Cart";
+    }, []);
+
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [loading, setLoading] = useState(true);

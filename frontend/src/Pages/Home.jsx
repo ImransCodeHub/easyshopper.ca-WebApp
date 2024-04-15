@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../Components/Layout';
 import './CSS/Home.css';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
@@ -10,6 +10,10 @@ const Home = () => {
         typeSpeed: 120,
         deleteSpeed: 80,
     });
+
+    useEffect(() => {
+        document.title = "Easy Shopper";
+    }, []);
 
     return (
         <Layout>

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CSS/Success.css';
 
 const Success = () => {
+    useEffect(() => {
+        document.title = "Thank You!";
+    }, []);
+    
     return (
         <div className='pyro'>
             <div className='before'></div>

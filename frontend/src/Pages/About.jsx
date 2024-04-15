@@ -1,37 +1,68 @@
 import React from 'react';
 import Layout from '../Components/Layout';
+import '../Pages/CSS/About.css';
+import { useEffect } from 'react';
 
 const About = () => {
+    useEffect(() => {
+        document.title = "About";
+    }, []);
+
     return (
         <Layout>
             <br />
-            <br />
-
             <div className="pt-32 flex flex-col items-center gap-4">
                 <img
-                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://i.imgur.com/zgE8SoE.png"
                     alt=""
-                    className="size-20 rounded-lg object-cover"
+                    className="size-40"
                 />
+                <div className='about-text-content'>
+                    <div>
+                        <h3 className="text-lg/tight font-bold text-gray-900 text-center">About The Program</h3>
 
-                <div>
-                    <h3 className="text-lg/tight font-medium text-gray-900 text-center">Developer</h3>
+                        <p className="mt-0.5 text-gray-700 text-center">
+                            The Software Development Co-op three-year program focuses on the competencies
+                            required to design, implement, and maintain software systems that operate in a secure 
+                            business networked environment containing stationary and mobile devices. The program 
+                            combines theoretical and practical learning experiences in a team-oriented setting.
+                        </p>
+                        <br />
 
-                    <p className="mt-0.5 text-gray-700 text-center">
-                        Capstone project for CNA Software Development Co-op course.
+                        <h3 className="text-lg/tight font-bold text-gray-900 text-center">Project Outline</h3>
 
-                        The Software Development Co-op three-year program focuses on the competencies
-                        required to design, implement, and maintain software systems that operate in a secure 
-                        business networked environment containing stationary and mobile devices. The program 
-                        combines theoretical and practical learning experiences in a team-oriented setting.
-                    </p>
+                        <p className="mt-0.5 text-gray-700 text-center">
+                            This project was done in a group, with the goal of creating a fullstack web application for a startup company.  
+                            We where encouraged to use as many technologies as possible, all of which where taught to us throughout the program.  
+                            The project consisted of 3 main parts: a systems proposal draft, a final proposal, and the final project deployment.
+                            <br />
+                        </p>
+                        <br />
 
+                        <h3 className="text-lg/tight font-bold text-gray-900 text-center">Tech Stack</h3>
+                        <p className="mt-0.5 text-gray-700 text-center">
+                            This web applications implements the following technologies:
+                            <ul>
+                                <li>• Node.js/Express Backend</li>
+                                <li>• React.js Frontend</li>
+                                <li>• MongoDB Atlas</li>
+                                <li>• JSON Web Tokens (Browser local storage/cookies for tracking)</li>
+                                <li>• React-Bootstrap Styling</li>
+                                <li>• Git/GitHub</li>
+                                <li>• HTTPS</li>
+                                <li>• DNS/Domain Setup</li>
+                                <li>• AWS Fullstack Serverless Architecture</li>
+                                <li>• OAuth (Handle user logins/track necessary information)</li>
+                            </ul>
+                        </p>
 
-                    <p className="mt-0.5 text-gray-700 text-center">
-                        Developed by: 
-                        <span className="text-blue-500">David Sparks, Imran Moin, Alberta Hansen, and Jack Husk</span>
-                    </p>
+                        <br />
+                        <h3 className="text-lg/tight font-bold text-gray-900 text-center">Developers</h3>
+                        <p className="mt-0.5 text-gray-700 text-center">
+                            <span className="text-blue-500">Alberta Hansen, Jack Husk, Imran Moin, and David Sparks</span>
+                        </p>
 
+                    </div>
                 </div>
             </div>
         </Layout>

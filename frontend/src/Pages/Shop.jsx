@@ -34,6 +34,10 @@ const Shop = ({fetchCartCount}) => {
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        document.title = "Shop";
+    }, []);
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const accessToken = localStorage.getItem('token');
 
