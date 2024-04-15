@@ -74,6 +74,7 @@ const Cart = ({fetchCartCount}) => {
 
             if (response.ok) {
                 const updatedCart = cartItems.filter(item => item.productId != productId);
+                setLoading(false);
                 setCartItems(updatedCart);
                 fetchCartCount();
             } else {
