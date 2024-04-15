@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const FORM_ENDPOINT = "https://public.herotofu.com/v1/35036a30-f1cd-11ee-b428-632ee80a2804"; 
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = "Contact";
+  }, []);
+
   const submitted = false;
   const handleSubmit = (e) => {
     e.preventDefault();

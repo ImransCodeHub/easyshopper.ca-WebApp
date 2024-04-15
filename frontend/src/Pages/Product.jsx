@@ -33,6 +33,10 @@ const Product = ({fetchCartCount}) => {
         fetchProductDetails();
     }, [productId]);
 
+    useEffect(() => {
+        document.title = "Product";
+    }, []);
+
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
     const accessToken = localStorage.getItem('token');
