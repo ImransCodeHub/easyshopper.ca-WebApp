@@ -41,87 +41,86 @@ const Contact = () => {
         e.target.submit();
       });
       console.log(submitted);
-      // if (submitted == true) {
-      //   return (
-      //     <>
-      //       console.log("hehehe");
-      //       <div className="text-2xl">Thank you!</div>
-      //       <div className="text-md">We'll be in touch soon.</div>
-      //     </>
-      //   );
-      // }
+
   };
 
 
   return (
-<div className="flex justify-center">
-<form className="pt-36 w-full max-w-lg"
-action={FORM_ENDPOINT}
-onSubmit={handleSubmit}
-method="POST"
->
-  
-  <div className="flex flex-wrap -mx-3 mb-6">
-    <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-name">
-        Name
-      </label>
-      <input
-        type="text"
-        placeholder="Your name"
-        name="name"
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-        id="grid-name"
-        required
-      />
-    </div>
-    <div className="w-full md:w-1/2 px-3">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
-        Email
-      </label>
-      <input
-        type="email"
-        placeholder="Email"
-        name="email"
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        id="grid-email"
-        required
-      />
-    </div>
-  </div>
-  <div className="flex flex-wrap -mx-3 mb-6">
-    <div className="w-full px-3">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-message">
-        Message
-      </label>
-      <textarea
-        placeholder="Your message"
-        name="message"
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        id="grid-message"
-        required
-      ></textarea>
-      <p className="text-gray-600 text-xs italic">Tell us whats on your mind</p>
-    </div>
-  </div>
-  <div className="flex flex-wrap -mx-3 mb-6">
-    <div className="w-full px-3">
-      <button
-        className="active:bg-blue-600 hover:shadow-lg focus:outline-none px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none"
-        type="submit"
-      >
-        Send Message
-      </button>
-    </div>
-  </div>
-</form>
-</div>
+      <>
+        <div className="pt-36 flex justify-center" style={{paddingTop: "190px"}}>
+          <form className=" w-full max-w-lg"
+            action={FORM_ENDPOINT}
+            onSubmit={handleSubmit}
+            method="POST"
+          >
+          
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-name">
+                Name
+              </label>
+              <input
+                type="text"
+                placeholder="Your name"
+                name="name"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="grid-name"
+                required
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-email"
+                required
+              />
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-message">
+                Message
+              </label>
+              <textarea
+                placeholder="Your message"
+                name="message"
+                rows={6}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-message"
+                required
+              ></textarea>
+              <p className="text-gray-600 text-xs italic">Tell us whats on your mind</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <button
+                className="active:bg-blue-600 hover:shadow-lg focus:outline-none px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-blue-500 rounded shadow outline-none"
+                type="submit"
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
+        </form>
 
-    
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2691.0069233859144!2d-52.7209121!3d47.5871074!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b0ca3f9e1ca8a3d%3A0x90ee379f0f12c6a6!2sCollege%20of%20the%20North%20Atlantic!5e0!3m2!1sen!2sca!4v1713226706257!5m2!1sen!2sca"
+          style={{ width: "550px", height: "400px", border: "0", padding: "15px", borderRadius: "30px"}}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+    </div>
+  </>  
   );
 };
-
-
 
 export default Contact;
 
