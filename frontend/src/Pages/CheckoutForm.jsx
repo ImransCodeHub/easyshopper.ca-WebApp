@@ -15,7 +15,8 @@ const CheckoutForm = () => {
 
     const fetchClientSecret = useCallback(() => {
         // Create a Checkout Session
-        return fetch("http://localhost:4242/create-checkout-session", {
+        //return fetch("http://localhost:4242/create-checkout-session", {
+        return fetch("/api/create-checkout-session", {
 
             method: "POST",
             headers: {
@@ -52,7 +53,8 @@ const Return = ({status, setStatus, fetchCartCount}) => {
         const urlParams = new URLSearchParams(queryString);
         const sessionId = urlParams.get('session_id');
 
-        fetch(`http://localhost:4242/session-status?session_id=${sessionId}`)
+        // fetch(`http://localhost:4242/session-status?session_id=${sessionId}`)
+        fetch(`/api/session-status?session_id=${sessionId}`)
         .then((res) => res.json())
         .then((data) => {
             setStatus(data.status);
@@ -72,7 +74,8 @@ const Return = ({status, setStatus, fetchCartCount}) => {
 
         const emptyUserCartOnPayment = async () => {
             try {
-                const response = await fetch('http://localhost:4242/api/empty-cart', {
+                // const response = await fetch('http://localhost:4242/api/empty-cart', {
+                const response = await fetch('/api/empty-cart', {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
