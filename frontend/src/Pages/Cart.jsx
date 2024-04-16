@@ -1,8 +1,11 @@
 import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import './CSS/Cart.css';
+//import { CheckoutForm } from './CheckoutForm';
+import { useNavigate } from 'react-router-dom';
 
-const Cart = ({fetchCartCount}) => {
+const Cart = ({fetchCartCount, status, setStatus}) => {
+    const navigate = useNavigate();
 
     useEffect(() => {
         document.title = "Cart";
@@ -49,7 +52,7 @@ const Cart = ({fetchCartCount}) => {
                     image: productInfo?.images[0] || 'Product image not found',
                     name: productInfo?.name || 'Product name not found',
                     price: productInfo?.price || 0,
-                    image: productInfo?.image || 'Product image not found',
+                    //image: productInfo?.image || 'Product image not found',
                     totalPrice: item.quantity * productInfo.price
                 };
             }));
@@ -86,24 +89,22 @@ const Cart = ({fetchCartCount}) => {
     };
 
     const handleCheckoutClick = async () => {
-        // empty the cart
-        // send customer to success page and thank them for shopping
-        try {
-            // loop through the cart - delete all products
-            for (const cartItem of cartItems) {
-                //await fetch(`http://localhost:8000/api/cart/${cartItem.productId}`, {
-                await fetch(`/api/cart/${cartItem.productId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    }
-                });
-            }
+        navigate(`/checkout`);
 
-            window.location.href = '/success';
-        } catch (error) {
-            console.error('Error when attempting to checkout', error);
-        }
+        // try {
+        //     for (const cartItem of cartItems) {
+        //         await fetch(`http://localhost:8000/api/cart/${cartItem.productId}`, {
+        //         // await fetch(`/api/cart/${cartItem.productId}`, {
+        //             method: 'DELETE',
+        //             headers: {
+        //                 Authorization: `Bearer ${accessToken}`,
+        //             }
+        //         });
+        //     }
+
+        // } catch (error) {
+        //     console.error('Error when attempting to checkout', error);
+        // }
     };
 
     useEffect(() => {
@@ -234,11 +235,11 @@ const Cart = ({fetchCartCount}) => {
                         </div>
                         <br></br>
                         <div className='button-container'>
-                            <Link to='/success'>
+                            {/* <Link to='/success'> */}
                                 <button className='checkout-button' onClick={handleCheckoutClick}>
                                     Checkout
                                 </button>
-                            </Link>
+                            {/* </Link> */}
                         </div>
                     </div>
                 </div>

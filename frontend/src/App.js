@@ -13,8 +13,10 @@ import Success from './Pages/Success';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import{ CheckoutForm, Return } from './Pages/CheckoutForm';
 
 function App() {
+  const [status, setStatus] = useState(null);
 
   const [cartCount, setCartCount] = useState(0);
 
@@ -27,10 +29,11 @@ function App() {
               headers: {
                   Authorization: `Bearer ${accessToken}`,
               },
+              //console: console.log('fetchCart NavBar accessToken value: ' + accessToken)
           
           });
           const data = await response.json();
-          console.log('fetchCart NavBar data value: ' + JSON.stringify(data.cart.length));
+          //console.log('fetchCart NavBar data value: ' + JSON.stringify(data.cart.length));
 
           setCartCount(data.cart.length);
 
@@ -50,17 +53,19 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar cartCount={cartCount} fetchCartCount={fetchCartCount} />
-        <Routes>
+        <Routes>            
             <Route path="/shop" element={<Shop fetchCartCount={fetchCartCount} />} />
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} /> 
             <Route path="/products/:productId" element={<Product fetchCartCount={fetchCartCount} />} />
-            <Route path="/cart" element={<Cart fetchCartCount={fetchCartCount} />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login fetchCartCount={fetchCartCount} />} />
             <Route path="/thankyou" element={<ThankYou />} />
             <Route path="/register" element={<Register />} />
             <Route path="/success" element={<Success />} />
+            <Route path="/cart" element={<Cart fetchCartCount={fetchCartCount} status={status} setStatus={setStatus} />} />
+            <Route path="/checkout" element={<CheckoutForm />} />
+            <Route path="/return" element={<Return status={status} setStatus={setStatus} fetchCartCount={fetchCartCount} />} />
         </Routes>
       </BrowserRouter>
     </div>
