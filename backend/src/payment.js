@@ -11,12 +11,13 @@ app.use(cors());
 const JWTSecret = "test123";
 
 
-const YOUR_DOMAIN = 'http://localhost:3000';
+// const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = 'https://easyshopper.ca';
 
 const fetchProductInfo = async (productId) => {
   try {
-      // const response = fetch(`/api/products/${productId}`);
-      const response = fetch(`http://localhost:8000/api/products/${productId}`);
+      const response = fetch(`/api/products/${productId}`);
+      // const response = fetch(`http://localhost:8000/api/products/${productId}`);
       const productData = (await response).json();
       console.log('Product info json being fetched: ' + JSON.stringify(productData));
 
@@ -30,8 +31,8 @@ const fetchProductInfo = async (productId) => {
 
 const fetchCartData = async (accessToken) => {
   try {
-      // const response = await fetch('/api/cart', { 
-      const response = await fetch('http://localhost:8000/api/cart', { 
+      const response = await fetch('/api/cart', { 
+      // const response = await fetch('http://localhost:8000/api/cart', { 
         headers: {
           Authorization: `Bearer ${accessToken}`,
         }
@@ -63,7 +64,7 @@ const fetchCartData = async (accessToken) => {
   }
 };
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/api/create-checkout-session', async (req, res) => {
   try {
     // Fetch cart data and wait for it to resolve
     const lineItems = await fetchCartData(req.headers.authorization.replace('Bearer ', ''));
@@ -88,7 +89,7 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 
 // Use .env file to store the secret key
-app.get('/session-status', async (req, res) => {
+app.get('/api/session-status', async (req, res) => {
   const session = await stripe('sk_test_51P3xQp04W06RgWe1Yg7cNlHtZubkL5jHRzSWotY3QCAWbXMqm8eiy9r1bru824U6ebeIyEWSguqxbcdPeoSHL4ct00sFyp7htZ').checkout.sessions.retrieve(req.query.session_id);
 
   res.send({
