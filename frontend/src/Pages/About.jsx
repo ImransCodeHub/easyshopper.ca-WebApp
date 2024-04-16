@@ -22,9 +22,9 @@ const About = () => {
                         <h3 className="text-lg/tight font-bold text-gray-900 text-center">About The Program</h3>
 
                         <p className="mt-0.5 text-gray-700 text-center">
-                            The Software Development Co-op three-year program focuses on the competencies
-                            required to design, implement, and maintain software systems that operate in a secure 
-                            business networked environment containing stationary and mobile devices. The program 
+                            The Software Development Co-op three-year program focuses on the competencies <br/>
+                            required to design, implement, and maintain software systems that operate in a secure <br/> 
+                            business networked environment containing stationary and mobile devices. The program <br/>
                             combines theoretical and practical learning experiences in a team-oriented setting.
                         </p>
                         <br />
@@ -32,9 +32,9 @@ const About = () => {
                         <h3 className="text-lg/tight font-bold text-gray-900 text-center">Project Outline</h3>
 
                         <p className="mt-0.5 text-gray-700 text-center">
-                            This project was done in a group, with the goal of creating a fullstack web application for a startup company.  
-                            We where encouraged to use as many technologies as possible, all of which where taught to us throughout the program.  
-                            The project consisted of 3 main parts: a systems proposal draft, a final proposal, and the final project deployment.
+                            This project was done in a group, with the goal of creating a fullstack web application for a startup company. <br/> 
+                            We where encouraged to use as many technologies as possible, all of which where taught to us throughout the program. <br/> 
+                            The project consisted of 3 main parts: a systems proposal draft, a final proposal, and the final project deployment. <br/>
                             <br />
                         </p>
                         <br />
@@ -79,3 +79,7 @@ const About = () => {
 };
 
 export default About;
+
+
+
+//--------------------------------------original code------------------------------------------
