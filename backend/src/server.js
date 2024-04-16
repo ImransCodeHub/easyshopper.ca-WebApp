@@ -238,6 +238,41 @@ app.delete('/api/cart/:productId', async (req, res) => {
     }
 });
 
+// Moved to payment.js!
+// api to delete all products from the cart of a user after the payment is successful
+// app.delete('/api/emptyCart', async (req, res) => {
+//   console.log('emptyCart api called');
+
+//     const { authorization } = req.headers;
+//     if (!authorization) {
+//         return res.status(400).json({ error: 'Authorization header is required' });
+//     }
+//     try {
+//         const token = authorization.split(' ')[1];
+//         jwt.verify(token, JWTSecret, async (err, decoded) => {
+//             if (err) {
+//                 return res.status(401).json({ error: 'Invalid token' });
+//             }
+
+//             try {
+//                 const database = client.db('easyshopper');
+//                 const cart = database.collection('userCarts');
+
+//                 await cart.deleteMany({ email: decoded.email });
+
+//                 return res.json({ status: 'Cart emptied' });
+//             } catch (error) {
+//                 console.error('Error deleting cart items:', error);
+//                 return res.status(500).json({ error: 'Error deleting cart items' });
+//             }
+//         });
+//     } catch (error) {
+//         console.error('Error validating user:', error);
+//         return res.status(500).json({ error: 'Error validating user' });
+//     }
+// });
+
+
 //TODO: Add GET /api/products/:id/reviews endpoint to get all reviews for a product
 //TODO: Add POST /api/products/:id/reviews endpoint to add a review for a product
 

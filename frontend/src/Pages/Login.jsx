@@ -7,7 +7,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../Pages/CSS/Login.css';
 
-const Login = () => {
+const Login = ({fetchCartCount}) => {
 
     useEffect(() => {
         document.title = "Login";
@@ -28,12 +28,15 @@ const Login = () => {
                 localStorage.setItem('token', token);
                 //await checkLoginStatus();
                 navigate('/');
+                
             }
         };
         handleTokenVerification();
+        
 
     }, []);
 
+    
     // Runs once when the component is loaded
     useEffect(() => {
         //fetch('http://localhost:8000/api/google/url')
@@ -110,6 +113,7 @@ const Login = () => {
         // if so, user is logged in
         if (localStorage.getItem("token")) {
             setIsLoggedIn(true);
+            //fetchCartCount(); // BUG: App.js:28 GET http://localhost:8000/api/cart 401 (Unauthorized)
         } else {
             setIsLoggedIn(false);
         }
@@ -185,4 +189,4 @@ const Login = () => {
     );
 };
 
-export default React.memo(Login); // Memoize the Login component
+export default React.memo(Login); // Memoize the Login component // remove this?
