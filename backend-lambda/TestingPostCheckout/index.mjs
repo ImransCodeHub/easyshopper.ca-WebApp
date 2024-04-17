@@ -43,10 +43,12 @@ export const handler = async (event) => {
     });
 
     // Send the client secret to the frontend
-    return {
-      statusCode: 200,
-      body: JSON.stringify({clientSecret: session.client_secret}),
-    };
+    return { clientSecret: session.client_secret };
+
+    // return {
+    //   statusCode: 200,
+    //   body: JSON.stringify({clientSecret: session.client_secret}),
+    // };
   } catch (error) {
     console.error('Error creating checkout session:', error);
     return {

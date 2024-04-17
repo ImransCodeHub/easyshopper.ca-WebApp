@@ -7,7 +7,9 @@ import {Navigate} from "react-router-dom";
 // recreating the `Stripe` object on every render. - TODO: Do the same for Chatbot thing later.
 
 // Put the publishable key in the .env file
-const stripePromise = loadStripe("pk_test_51P3xQp04W06RgWe1YuUFUfntjfsj6Hq4TYlBYIxsf3tHQjuiMlEIXG89XKpP3bdXyvgOBRKTJ5pqCoatHbgtHBfx00UaRcT1OI");
+const stripePromise = loadStripe("pk_test_51P3xQp04W06RgWe1YuUFUfntjfsj6Hq4TYlBYIxsf3tHQjuiMlEIXG89XKpP3bdXyvgOBRKTJ5pqCoatHbgtHBfx00UaRcT1OI", {
+    timeout: 30000,
+});
 
 const accessToken = localStorage.getItem('token');
 
@@ -15,7 +17,7 @@ const CheckoutForm = () => {
 
     const fetchClientSecret = useCallback(() => {
         // Create a Checkout Session
-        //return fetch("http://localhost:4242/create-checkout-session", {
+        // return fetch("http://localhost:4242/api/create-checkout-session", {
         return fetch("/api/create-checkout-session", {
 
             method: "POST",
@@ -25,8 +27,12 @@ const CheckoutForm = () => {
             },
 
         })
-        .then((res) => res.json())
-        .then((data) => data.clientSecret);
+        .then((res) => {console.log(res); return res.json();}) // Log the response
+        .then((data) => {
+            console.log('Client Secret:', data.clientSecret); // Log the client secret
+            return data.clientSecret; // Return the client secret
+        });
+        
     }, []);
 
     const options = {fetchClientSecret};
@@ -53,7 +59,7 @@ const Return = ({status, setStatus, fetchCartCount}) => {
         const urlParams = new URLSearchParams(queryString);
         const sessionId = urlParams.get('session_id');
 
-        // fetch(`http://localhost:4242/session-status?session_id=${sessionId}`)
+        // fetch(`http://localhost:4242/api/session-status?session_id=${sessionId}`)
         fetch(`/api/session-status?session_id=${sessionId}`)
         .then((res) => res.json())
         .then((data) => {
