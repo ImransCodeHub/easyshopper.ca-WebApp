@@ -55,14 +55,15 @@ const Return = ({status, setStatus, fetchCartCount}) => {
     //const navigate = useNavigate();
 
     useEffect(() => {
-        const queryString = window.location.search;
+        const queryString = window.location.search; // returns the URL query String 
         const urlParams = new URLSearchParams(queryString);
         const sessionId = urlParams.get('session_id');
 
         // fetch(`http://localhost:4242/api/session-status?session_id=${sessionId}`)
         fetch(`/api/session-status?session_id=${sessionId}`)
-        .then((res) => res.json())
+        .then((res) => {console.log(res); return res.json();}) 
         .then((data) => {
+            console.log( "Data: " + data + ", Customer Email: " + data.customer_email);
             setStatus(data.status);
             console.log(status);
             setCustomerEmail(data.customer_email);
