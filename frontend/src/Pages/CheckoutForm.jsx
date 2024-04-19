@@ -71,24 +71,30 @@ const Return = ({status, setStatus, fetchCartCount}) => {
     }, []);
 
     if (status === 'open') {
+        console.log("Payment status is" + status);
         return (
         <Navigate to="/checkout" />
         )
     }
 
     if (status === 'complete') {
-        console.log(status + ", Emtptying cart...");
+        console.log("Payment status is" + status + ", Emtptying cart...");
+        console.log("accessToken is " + accessToken);
+
+        const headers = {
+            Authorization: `Bearer ${accessToken}`,
+        };
+    
+        console.log("Headers sent to lambda:", headers);
 
         const emptyUserCartOnPayment = async () => {
             try {
                 // const response = await fetch('http://localhost:4242/api/empty-cart', {
                 const response = await fetch('/api/empty-cart', {
                     method: 'DELETE',
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
+                    headers: headers,
                 });
-                console.log(response);
+                console.log("response is " + response);
                 setStatus(null);
                 //TODO: Future update: Use the setCartCount function to update the cart count in the navbar
                 //window.location.reload();

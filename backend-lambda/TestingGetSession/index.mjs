@@ -5,6 +5,8 @@ export const handler = async (event) => {
   const { session_id } = event.queryStringParameters;
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
   
+  console.log('Session ID Log:', session_id);
+
   try {
     // Initialize the Stripe client
     const stripeClient = stripe(stripeSecretKey);

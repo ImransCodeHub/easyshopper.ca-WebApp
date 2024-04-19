@@ -38,15 +38,8 @@ const Home = () => {
                 </div>
             </Layout>
 
-            {/* Additional space */}
+            Additional space
             <div style={{ height: '50vh' }}></div>
-
-            {/* Image further down the page */}
-            <div className="container">
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <img src="https://i.imgur.com/xxZK3Ds.jpg" alt="Easy Shopper" style={{ width: '20%' }} />
-                </div>
-            </div>
         
         </>
     

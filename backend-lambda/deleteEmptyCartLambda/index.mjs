@@ -5,9 +5,13 @@ const JWTSecret = process.env.JWT_SECRET;
 const uri = process.env.MONGO_URI;
 
 export const handler = async (event) => {
-  const { authorization } = event.headers;
+  console.log('Event: ', event);
+
+  const { Authorization } = event.headers;
   
-  if (!authorization) {
+  console.log('Authorization: ', Authorization);
+  
+  if (!Authorization) {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Authorization header is required' })
@@ -15,7 +19,8 @@ export const handler = async (event) => {
   }
   
   try {
-    const token = authorization.split(' ')[1];
+    const token = Authorization.split(' ')[1];
+    console.log('Token' + token); 
     const decoded = jwt.verify(token, JWTSecret);
     
     const client = new MongoClient(uri, {
