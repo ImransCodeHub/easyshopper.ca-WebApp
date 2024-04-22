@@ -25,7 +25,7 @@ import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
 import chatbotIconRed from './Components/Assets/chatbot-icon-red.png';
 //import './Components/Chatbot/ChatbotUI.css';
-import { X } from 'react-bootstrap-icons';
+// import { X } from 'react-bootstrap-icons';
 
 
 

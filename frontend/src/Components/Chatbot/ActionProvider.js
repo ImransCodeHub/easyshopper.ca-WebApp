@@ -28,7 +28,8 @@ class ActionProvider {
       //   },
       //   body: JSON.stringify({ message: message }) //change to message: question?
       // });
-      const url = 'http://localhost:5000/api/chatbot';
+      // const url = 'http://localhost:5000/api/chatbot';
+      const url = '/api/chatbot';
       const options = {
         method: 'POST',
         headers: {
