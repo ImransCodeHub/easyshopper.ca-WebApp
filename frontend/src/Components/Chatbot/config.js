@@ -1,8 +1,8 @@
 // Config starter code
 import { createChatBotMessage } from "react-chatbot-kit";
 // import Options from "./Options.js";
-import avatar from '../Assets/avatarBot.png';
-import localUserAvatar from '../Assets/avatarUser.png';
+// import avatar from '../Assets/avatarBot.png';
+// import localUserAvatar from '../Assets/avatarUser.png';
 
 // Fetching the user avatar from google OAuth
 /*
