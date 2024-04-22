@@ -12,37 +12,26 @@ const Home = () => {
     });
 
     useEffect(() => {
-        document.title = "Easy Shopper";
+        document.title = "Easyshopper.ca";
     }, []);
 
-
-
-    
     return (
-        <>
-            <Layout>
-                {/* build a hero section with tailwind */}
+        <Layout>
+            {/* build a hero section with tailwind */}
 
-
-                <br />
-                <div className="container">
-                    <h1 className="centered-text">Welcome to EasyShopper.ca</h1>
-                    <h1 className='typewriter-start'>Your one-stop shop for 
-                        <span style={{fontWeight: 'bold', color: 'green', marginLeft: '20px'}}>
-                            {text}
-                        </span>
-                        <span style={{color: 'red'}}>
-                            <Cursor cursorStyle = '<' />
-                        </span>
-                    </h1>
-                </div>
-            </Layout>
-
-            Additional space
-            <div style={{ height: '50vh' }}></div>
-        
-        </>
-    
+            <br />
+            {/* <div className="container"> - Preventing other elements from overlapping it, like chatbot */}
+                <h1 className="centered-text">Welcome to EasyShopper.ca</h1>
+                <h1 className='typewriter-start'>Your one-stop shop for 
+                    <span style={{fontWeight: 'bold', color: 'green', marginLeft: '20px'}}>
+                        {text}
+                    </span>
+                    <span style={{color: 'red'}}>
+                        <Cursor cursorStyle = '<' />
+                    </span>
+                </h1>
+            {/* </div> */}
+        </Layout>    
     );
 };
 

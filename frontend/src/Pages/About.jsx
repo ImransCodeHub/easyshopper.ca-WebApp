@@ -19,6 +19,7 @@ const About = () => {
                 />
                 <div className='about-text-content'>
                     <div>
+                        {/* Redesign it - Separate them into cards */}
                         <h3 className="text-lg/tight font-bold text-gray-900 text-center">About The Program</h3>
 
                         <p className="mt-0.5 text-gray-700 text-center">
@@ -67,11 +68,9 @@ const About = () => {
 
                         </p>
 
-
-
-
                     </div>
                 </div>
+            <div style={{ height: '10vh' }}></div> 
             </div>
         </Layout>
         

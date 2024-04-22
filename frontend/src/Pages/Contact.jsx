@@ -44,7 +44,6 @@ const Contact = () => {
 
   };
 
-
   return (
       <>
         <div className="pt-36 flex justify-center" style={{paddingTop: "190px"}}>

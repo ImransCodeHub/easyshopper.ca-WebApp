@@ -51,12 +51,14 @@ const Navbar = ({ cartCount, fetchCartCount }) => {
         setVisible(visible);
     };
     
+    const navigate = useNavigate();
+    
     return (
         <div className={`navbar ${visible ? 'navbar-visible' : 'navbar-hidden'}`}>
             {/* <div className='nav-logo'>
                 <img src={logo} alt='logo' />
             </div> */}
-            <div className='text-logo'>
+            <div className='text-logo' onClick={() => { navigate('/'); setMenu("home"); }}>
                 <p className="easy">EASY</p>
                 <br /> {/* Add line break to move "Shopper" to a new line */}
                 <p className="shopper">SHOPPER</p>
