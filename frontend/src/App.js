@@ -24,7 +24,7 @@ import config from './Components/Chatbot/config';
 import Chatbot from 'react-chatbot-kit';
 import 'react-chatbot-kit/build/main.css';
 import chatbotIconRed from './Components/Assets/chatbot-icon-red.png';
-//import './Components/Chatbot/ChatbotUI.css';
+import './Components/Chatbot/ChatbotUI.css';
 // import { X } from 'react-bootstrap-icons';
 
 
@@ -92,8 +92,8 @@ function App() {
 
       {/* Floating chatbot icon */}
       <div className="chatbot-icon" onClick={toggleChatbot}>
-        <img src={chatbotIconRed} alt="Chatbot" style={{ height: '50px', width: '50', position: 'fixed', bottom: '0', right: '0' }} />
-        {/* <img src={chatbotIconRed} alt="Chatbot" /> */}
+        {/* <img src={chatbotIconRed} alt="Chatbot" style={{ height: '50px', width: '50', position: 'fixed', bottom: '0', right: '0' }} /> */}
+        <img src={chatbotIconRed} alt="Chatbot" />
 
       </div>
 

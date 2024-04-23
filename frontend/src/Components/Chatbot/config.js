@@ -1,8 +1,8 @@
 // Config starter code
 import { createChatBotMessage } from "react-chatbot-kit";
 // import Options from "./Options.js";
-// import avatar from '../Assets/avatarBot.png';
-// import localUserAvatar from '../Assets/avatarUser.png';
+import avatar from '../Assets/avatarBot.png';
+import localUserAvatar from '../Assets/avatarUser.png';
 
 // Fetching the user avatar from google OAuth
 /*
@@ -41,7 +41,7 @@ const config = {
   },
 
   initialMessages: [createChatBotMessage(`Hi there easyshopper! How can I NOT help you today?`)],
-  /*
+
   // This is so cool!
   customComponents: {
     header: () => <div className="custom-chat-header">You can ask me anything!</div>,
@@ -60,7 +60,7 @@ const config = {
         style={{height: '40px', width: '40px', marginLeft: '8px'}}/>
       </div>
     ),
-  }, */
+  }, 
   
   widgets: [
     {
