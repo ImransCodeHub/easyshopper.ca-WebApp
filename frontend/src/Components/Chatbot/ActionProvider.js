@@ -53,8 +53,15 @@ class ActionProvider {
       console.log(data);
 
       // Fix the response format - it should be an array of messages and from the array of messages, it should take the laest message and from that message, it should take the text value
-      if (data.messages && data.messages[0] && data.messages[0][0] && data.messages[0][0].text) {
-        const botResponse = this.createChatBotMessage(data.messages[0][0].text.value);
+      // Doing checks if the value exists in the response
+      if (
+        // data.assistantResponses &&
+        // data.assistantResponses[0] &&
+        // data.assistantResponses[0][0] &&
+        // data.assistantResponses[0][0].text &&
+        data.assistantResponses[0][0].text.value
+      ) {
+        const botResponse = this.createChatBotMessage(data.assistantResponses[0][0].text.value);
         console.log(botResponse);
         this.addMessageToState(botResponse);
       } else {
