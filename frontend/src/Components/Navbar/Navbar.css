@@ -146,3 +146,43 @@ top: -120px; /* Hide navbar above the viewport */
     color: #ffffff; /* Set the text color */
     margin-top: -50px; /* Adjust the top margin to move the text down */
 }
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+    .navbar {
+      height: 80px; /* Reduce height for smaller screens */
+    }
+  
+    .nav-menu {
+      gap: 5vw; /* Decrease gap between menu items */
+      font-size: 4vw; /* Decrease font size for menu items */
+    }
+
+    .text-logo {
+        text-align: center;
+        margin-top: 5vw; /* Adjust the top margin based on viewport width */
+        margin-bottom: 0px; /* Keep the bottom margin as 0px */
+        /* position: fixed;
+        right: 260px; */
+    }
+    
+    .easy, .shopper {
+        font-family: 'Tourney', sans-serif;
+        font-weight: 300; /* Adjust the font weight as needed */
+        font-style: normal;
+        font-size: 7vw; /* Adjust the font size based on viewport width */
+        color: #ffffff; /* Set the text color */
+        margin-top: -8vw; /* Adjust the top margin based on viewport width */
+    }
+    
+  
+    .nav-login-cart button {
+      width: auto; /* Let the button width adjust based on content */
+      padding: 2vw 5vw; /* Add padding to the button */
+      font-size: 3vw; /* Decrease font size for the button */
+      position: fixed;
+        right: 250px;
+    }
+    
+    
+  }

@@ -63,3 +63,16 @@
         text-shadow: 0 0 10px rgb(255, 255, 255, 0.5); /* Return to initial shadow position */
     }
 }
+
+  /* Media query for smaller screens */
+  @media screen and (max-width: 600px) {
+    .centered-text {
+        font-size: 7vw; /* Adjust font size based on viewport width */
+    }
+    
+    .typewriter-start {
+        font-size: 5vw; /* Adjust font size based on viewport width */
+        top: calc(50% + 4vw); /* Adjusted top position relative to viewport width */
+    }
+  }
+
