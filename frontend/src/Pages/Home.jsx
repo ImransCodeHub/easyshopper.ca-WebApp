@@ -23,7 +23,7 @@ const Home = () => {
             {/* <div className="container"> - Preventing other elements from overlapping it, like chatbot */}
                 <h1 className="centered-text">Welcome to EasyShopper.ca</h1>
                 <h1 className='typewriter-start'>Your one-stop shop for 
-                    <span style={{fontWeight: 'bold', color: 'green', marginLeft: '20px'}}>
+                    <span style={{fontWeight: 'bold', color: 'green', marginLeft: '18px'}}>
                         {text}
                     </span>
                     <span style={{color: 'red'}}>
