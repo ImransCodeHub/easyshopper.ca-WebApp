@@ -52,6 +52,14 @@ const Navbar = ({ cartCount, fetchCartCount }) => {
     };
     
     const navigate = useNavigate();
+
+    const [isBurgerClicked, setIsBurgerClicked] = useState(false);
+
+    const handleBurgerClick = () => {
+      setIsBurgerClicked(!isBurgerClicked); // Toggle the state when the burger icon is clicked
+
+
+    };
     
     return (
         <div className={`navbar ${visible ? 'navbar-visible' : 'navbar-hidden'}`}>
@@ -81,6 +89,34 @@ const Navbar = ({ cartCount, fetchCartCount }) => {
                     <div className="nav-cart-count">{cartCount}</div>           
                 </div>
             </div>
+            <div className={`burger-icon ${isBurgerClicked ? 'clicked' : ''}`} onClick={handleBurgerClick}>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                {/* Navigation links */}
+                {isBurgerClicked && (
+                <div className="burger-links">
+                    <li><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/'>Home</Link></li>
+                    <li><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/shop'>Shop</Link></li>
+                    <li><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/about'>About</Link></li>
+                    <li><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/contact'>Contact</Link></li>
+                </div>
+                )}
+                
+
+            </div>
+            {/* <div className='login-nav-phone'>
+                <Login />
+            </div> */}
+            <div className="burger-nav-login-cart">
+                    {/* <Link to='/login'><button disabled= {!googleOauthURL} onClick= {userLoginButton}>Login</button></Link> */}
+                    <Link to='/cart'><Cart2  style={{fontSize: '35px' }} /></Link>
+                    {/* Cart count */}
+                    <div className="burger-nav-cart-count">{cartCount}</div>           
+            </div>
+
+
+
         </div>
     );
 };

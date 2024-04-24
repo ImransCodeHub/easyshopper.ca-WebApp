@@ -4,3 +4,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* Apply styles when the button is clicked */
+button.bg-black:active {
+    background-color: #333; /* Change background color when clicked */
+  }
+  
+  /* Apply styles when the button is hovered */
+  button.bg-black:hover {
+    border: 2px solid #000000; /* Add border */
+  }

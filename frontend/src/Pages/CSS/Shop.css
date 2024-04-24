@@ -83,3 +83,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+/* Apply styles when the button is hovered */
+button.bg-gray-200:hover {
+    border: 2px solid #333; /* Add border */
+  }
+  
+  button.bg-gray-200:hover span {
+    color: #333; /* Change text color */
+  }
+  
+button.bg-gray-200:active {
+background-color: #ccc; /* Change background color */
+}
