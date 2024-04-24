@@ -1,0 +1,40 @@
+@media screen and (max-width: 600px) {
+
+    .pt-36 {
+      padding-top: 105px !important;
+    }
+  
+    .w-full.max-w-lg {
+      max-width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 0px;
+
+    }
+  
+    .w-full.md\:w-1\/2 {
+      width: 100%; /* Make input fields full width */
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: -20px;
+    }
+  
+    iframe {
+        width: 100% !important;
+        height: 400px !important;
+        border: 0 !important;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 30px !important;
+      }
+  
+    /* Adjust the flex order for the map and form sections */
+    .flex {
+      flex-direction: column;
+    }
+  
+    form {
+      order: 1; /* Make the form appear after the map on phones */
+    }
+  }
+  
