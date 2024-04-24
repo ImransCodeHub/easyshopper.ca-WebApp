@@ -144,8 +144,16 @@ const Cart = ({fetchCartCount, status, setStatus}) => {
     return (
         <div className='cart-container'>
             {cartItems.length === 0 ? (
-                <div>
-                    <h1 className='cart-h1'>Your cart is empty; try adding some products first!</h1>
+                <div class="w-full gap-x-2 flex justify-center items-center">
+                <div
+                  class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
+                ></div>
+                <div
+                  class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
+                ></div>
+                <div
+                  class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+                ></div>
                 </div>
             ) : (
                 <div className='cart-container'>
@@ -165,12 +173,15 @@ const Cart = ({fetchCartCount, status, setStatus}) => {
                                             <div
                                               class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
                                             ></div>
-                                          </div>
+                                        </div>
                                     )
                                 }
                         })()  
                     }
                     </div>
+                    <br />
+                    <br />
+                    <br />
 
                     <h1 className='cart-h1'>Shopping Cart</h1>
                     <div className='table-container'>
@@ -182,7 +193,7 @@ const Cart = ({fetchCartCount, status, setStatus}) => {
                                     <th>Quantity</th>
                                     <th>Price Per Unit</th>
                                     <th>Total Price</th>
-                                    <th>Remove?</th>
+                                    <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -219,7 +230,7 @@ const Cart = ({fetchCartCount, status, setStatus}) => {
                                                     ></path>
                                                     <path fill="#B5BAC1" d="M2 13H48L47.6742 21.28H2.32031L2 13Z"></path>
                                                 </svg>
-                                                <span className='tooltip'>Delete</span>
+                                                {/* <span className='tooltip'>Delete</span> */}
                                             </button>
                                         </td>
                                     </tr>
@@ -228,10 +239,7 @@ const Cart = ({fetchCartCount, status, setStatus}) => {
                         </table>
                         <br></br>
                         <div className='total-price'>
-                            <h1>Total: ${totalPrice.toFixed(2)} * 15% HST</h1>
-                        </div>
-                        <div className='total-price'>
-                            <h1>Amount Due at Checkout: ${(totalPrice * 1.15).toFixed(2)}</h1>
+                            <h1>Total: ${totalPrice.toFixed(2)}</h1>
                         </div>
                         <br></br>
                         <div className='button-container'>

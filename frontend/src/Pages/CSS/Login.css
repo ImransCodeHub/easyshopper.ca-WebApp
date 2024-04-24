@@ -96,4 +96,39 @@ button svg {
     height: 24px;
     width: auto;
 }
+
+@media screen and (max-width: 600px) {
+    .signin {
+    position: absolute; /* Set position to absolute */
+    right: 38px; /* Adjust the position of the button from the right */
+    top: 25px; /* Adjust the position of the button from the top */
+    max-width: 320px;
+    display: flex;
+    font-size: 100px;
+    font-weight: 1;
+    background-color: #19242b00;
+    border: none;
+    cursor: pointer;
+    color: transparent; /* Hide the text by making it transparent */
+    text-indent: -9999px; /* Move the text off-screen */
+    overflow: hidden; /* Hide any overflowing text */
+    }
+    
+    .signin:hover {
+        transform: scale(1.025);
+    }
+    
+    .signin:active {
+        transform: scale(0.975);
+    }
+    
+    button svg {
+        height: 29px;
+        width: auto;
+    }
+
+
+
+}
+
   

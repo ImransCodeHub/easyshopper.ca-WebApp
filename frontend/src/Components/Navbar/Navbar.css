@@ -122,7 +122,6 @@ top: -120px; /* Hide navbar above the viewport */
     color: rgb(0, 0, 0);
 }
 
-
 .text-logo {
     text-align: center;
     margin-top: 0px; /* Adjust the top margin to move the text down */
@@ -147,10 +146,20 @@ top: -120px; /* Hide navbar above the viewport */
     margin-top: -50px; /* Adjust the top margin to move the text down */
 }
 
+.burger-icon {
+    display: none;
+}
+
+.burger-nav-login-cart{
+    display: none;
+}
+.login-nav-phone{
+    display: none;
+}
 /* Media query for smaller screens */
 @media screen and (max-width: 600px) {
     .navbar {
-      height: 80px; /* Reduce height for smaller screens */
+      height: 90px; /* Reduce height for smaller screens */
     }
   
     .nav-menu {
@@ -162,27 +171,103 @@ top: -120px; /* Hide navbar above the viewport */
         text-align: center;
         margin-top: 5vw; /* Adjust the top margin based on viewport width */
         margin-bottom: 0px; /* Keep the bottom margin as 0px */
-        /* position: fixed;
-        right: 260px; */
+        position: fixed;
+        /* right: 130px; */
     }
     
     .easy, .shopper {
         font-family: 'Tourney', sans-serif;
         font-weight: 300; /* Adjust the font weight as needed */
         font-style: normal;
-        font-size: 7vw; /* Adjust the font size based on viewport width */
+        font-size: 8vw; /* Adjust the font size based on viewport width */
         color: #ffffff; /* Set the text color */
         margin-top: -8vw; /* Adjust the top margin based on viewport width */
     }
     
+    .burger-icon {
+        display: block; /* Display the burger icon */
+        position: absolute; /* Position the icon absolutely */
+        left: 30px; /* Align the icon to the left edge */
+        transform: translateY(50%);
+      }
+      
+
+        /* Styles for each line in the burger icon */
+    .line {
+        width: 30px;
+        height: 3px;
+        background-color: #cbc3c3; /* Default color for burger lines */
+        margin: 5px 0; /* Space between each line */
+        transition: background-color 0.3s; /* Smooth transition for color change */
+    }
+
+    .burger-links {
+        position: absolute;
+        top: 100%; /* Position the links below the burger icon */
+        left: 0;
+        width: 80px; /* Occupy the full width */
+        background-color: #ffffff73; /* Background color of the links */
+        padding: 10px; /* Padding for spacing */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+      }
+      
+      .burger-links li {
+        list-style-type: none; /* Remove bullet points */
+        margin: 5px 0; /* Add margin between each link */
+      }
+      
+    /* Show the links when the burger icon is clicked */
+    .burger-links.open {
+        display: block;
+    }
   
-    .nav-login-cart button {
-      width: auto; /* Let the button width adjust based on content */
-      padding: 2vw 5vw; /* Add padding to the button */
-      font-size: 3vw; /* Decrease font size for the button */
-      position: fixed;
-        right: 250px;
+    /* Hover effect for burger icon */
+    .burger-icon:hover .line {
+        background-color: #FF4141; /* Darker color when hovered */
+    }
+
+    .burger-nav-login-cart{
+        display: block;
+        color: rgb(255, 255, 255);
+        position: absolute;
+        top: 30px;
+        right: 14px;
+        
+    }
+
+
+    .burger-nav-cart-count{
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: -40px;
+        margin-left: 27px;
+        border-radius: 11px;
+        background-color: #cec9c9;
+        color: rgb(0, 0, 0);
+    }
+    .login-nav-phone{
+        display: block;
     }
     
+    .nav-menu li {
+        display: none;
+    }
+    .nav-login-cart button {
+        display: none; 
+    }
+    .nav-cart-count{
+        display: none;
+    }
+
+    .nav-menu{
+        
+        color: #ffffff00;
+        
+    }
     
   }
